@@ -1,0 +1,156 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../3rd_party/argparse/include/argparse.hpp
+iostream
+-
+string
+-
+map
+-
+vector
+-
+list
+-
+functional
+-
+any
+-
+memory
+-
+type_traits
+-
+algorithm
+-
+sstream
+-
+stdexcept
+-
+numeric
+-
+iomanip
+-
+iterator
+-
+
+../3rd_party/fmt/include/fmt/core.h
+cassert
+-
+cstdio
+-
+cstring
+-
+iterator
+-
+string
+-
+type_traits
+-
+string_view
+-
+experimental/string_view
+-
+fmt/core.h
+-
+
+../error/error.h
+cstdint
+-
+string
+-
+utility
+-
+iostream
+-
+
+../instruction/instruction.h
+cstdint
+-
+utility
+-
+
+../tokenizer/token.h
+error/error.h
+../tokenizer/error/error.h
+any
+-
+string
+-
+cstdint
+-
+
+../tokenizer/utils.hpp
+cctype
+-
+
+D:/1 project/Clion project/zrb/analyser/analyser.h
+error/error.h
+D:/1 project/Clion project/zrb/analyser/error/error.h
+instruction/instruction.h
+D:/1 project/Clion project/zrb/analyser/instruction/instruction.h
+tokenizer/token.h
+D:/1 project/Clion project/zrb/analyser/tokenizer/token.h
+vector
+-
+optional
+-
+utility
+-
+map
+-
+cstdint
+-
+cstddef
+-
+
+D:/1 project/Clion project/zrb/fmts.hpp
+fmt/core.h
+D:/1 project/Clion project/zrb/fmt/core.h
+tokenizer/tokenizer.h
+D:/1 project/Clion project/zrb/tokenizer/tokenizer.h
+analyser/analyser.h
+D:/1 project/Clion project/zrb/analyser/analyser.h
+
+D:/1 project/Clion project/zrb/main.cpp
+argparse.hpp
+D:/1 project/Clion project/zrb/argparse.hpp
+fmt/core.h
+D:/1 project/Clion project/zrb/fmt/core.h
+tokenizer/tokenizer.h
+D:/1 project/Clion project/zrb/tokenizer/tokenizer.h
+analyser/analyser.h
+D:/1 project/Clion project/zrb/analyser/analyser.h
+fmts.hpp
+D:/1 project/Clion project/zrb/fmts.hpp
+iostream
+-
+fstream
+-
+
+D:/1 project/Clion project/zrb/tokenizer/tokenizer.h
+tokenizer/token.h
+D:/1 project/Clion project/zrb/tokenizer/tokenizer/token.h
+tokenizer/utils.hpp
+D:/1 project/Clion project/zrb/tokenizer/tokenizer/utils.hpp
+error/error.h
+D:/1 project/Clion project/zrb/tokenizer/error/error.h
+utility
+-
+optional
+-
+iostream
+-
+cstdint
+-
+memory
+-
+vector
+-
+string
+-
+

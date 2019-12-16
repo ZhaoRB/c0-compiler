@@ -1,0 +1,62 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../error/error.h
+cstdint
+-
+string
+-
+utility
+-
+iostream
+-
+
+../instruction/instruction.h
+cstdint
+-
+utility
+-
+
+../tokenizer/token.h
+error/error.h
+../tokenizer/error/error.h
+any
+-
+string
+-
+cstdint
+-
+
+D:/1 project/Clion project/zrb/analyser/analyser.cpp
+analyser.h
+D:/1 project/Clion project/zrb/analyser/analyser.h
+climits
+-
+sstream
+-
+
+D:/1 project/Clion project/zrb/analyser/analyser.h
+error/error.h
+D:/1 project/Clion project/zrb/analyser/error/error.h
+instruction/instruction.h
+D:/1 project/Clion project/zrb/analyser/instruction/instruction.h
+tokenizer/token.h
+D:/1 project/Clion project/zrb/analyser/tokenizer/token.h
+vector
+-
+optional
+-
+utility
+-
+map
+-
+cstdint
+-
+cstddef
+-
+
