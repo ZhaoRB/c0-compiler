@@ -1,8 +1,8 @@
-# Install script for directory: D:/1 project/Clion project/zrb/3rd_party/fmt
+# Install script for directory: D:/1 project/Clion project/c0/c0-compiler/3rd_party/fmt
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/miniplc0")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/cc0")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

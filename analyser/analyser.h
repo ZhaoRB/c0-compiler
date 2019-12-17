@@ -3,6 +3,8 @@
 #include "error/error.h"
 #include "instruction/instruction.h"
 #include "tokenizer/token.h"
+#include "table/constant.h"
+#include "table/function.h"
 
 #include <vector>
 #include <optional>
@@ -88,16 +90,21 @@ namespace miniplc0 {
 		std::size_t _offset;
 		std::vector<Instruction> _instructions;
 		std::pair<uint64_t, uint64_t> _current_pos;
+        // 下一个 token 在栈的偏移
+        int32_t _nextTokenIndex;
 
 		// 为了简单处理，我们直接把符号表耦合在语法分析里
 		// 变量                   示例
 		// _uninitialized_vars    int a;
 		// _vars                  int a=1;
 		// _consts                const a=1;
-		std::map<std::string, int32_t> _uninitialized_vars;
-		std::map<std::string, int32_t> _vars;
-		std::map<std::string, int32_t> _consts;
-		// 下一个 token 在栈的偏移
-		int32_t _nextTokenIndex;
+        //		std::map<std::string, int32_t> _uninitialized_vars;
+        //		std::map<std::string, int32_t> _vars;
+        //		std::map<std::string, int32_t> _consts;
+
+        // 常量表和符号表
+        std::vector<Constant> _constants;
+        std::vector<Function> _functions;
+
 	};
 }

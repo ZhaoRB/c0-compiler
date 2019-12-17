@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/1 project/Clion project/zrb/3rd_party/fmt/src/format.cc" "D:/1 project/Clion project/zrb/cmake-build-debug/3rd_party/fmt/CMakeFiles/fmt.dir/src/format.cc.obj"
-  "D:/1 project/Clion project/zrb/3rd_party/fmt/src/posix.cc" "D:/1 project/Clion project/zrb/cmake-build-debug/3rd_party/fmt/CMakeFiles/fmt.dir/src/posix.cc.obj"
+  "D:/1 project/Clion project/c0/c0-compiler/3rd_party/fmt/src/format.cc" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/3rd_party/fmt/CMakeFiles/fmt.dir/src/format.cc.obj"
+  "D:/1 project/Clion project/c0/c0-compiler/3rd_party/fmt/src/posix.cc" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/3rd_party/fmt/CMakeFiles/fmt.dir/src/posix.cc.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

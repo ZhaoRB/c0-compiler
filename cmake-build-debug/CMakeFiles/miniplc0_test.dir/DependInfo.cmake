@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/1 project/Clion project/zrb/tests/test_analyser.cpp" "D:/1 project/Clion project/zrb/cmake-build-debug/CMakeFiles/miniplc0_test.dir/tests/test_analyser.cpp.obj"
-  "D:/1 project/Clion project/zrb/tests/test_main.cpp" "D:/1 project/Clion project/zrb/cmake-build-debug/CMakeFiles/miniplc0_test.dir/tests/test_main.cpp.obj"
-  "D:/1 project/Clion project/zrb/tests/test_tokenizer.cpp" "D:/1 project/Clion project/zrb/cmake-build-debug/CMakeFiles/miniplc0_test.dir/tests/test_tokenizer.cpp.obj"
+  "D:/1 project/Clion project/c0/c0-compiler/tests/test_analyser.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/miniplc0_test.dir/tests/test_analyser.cpp.obj"
+  "D:/1 project/Clion project/c0/c0-compiler/tests/test_main.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/miniplc0_test.dir/tests/test_main.cpp.obj"
+  "D:/1 project/Clion project/c0/c0-compiler/tests/test_tokenizer.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/miniplc0_test.dir/tests/test_tokenizer.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -24,8 +24,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "D:/1 project/Clion project/zrb/cmake-build-debug/CMakeFiles/cc0_lib.dir/DependInfo.cmake"
-  "D:/1 project/Clion project/zrb/cmake-build-debug/3rd_party/fmt/CMakeFiles/fmt.dir/DependInfo.cmake"
+  "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/cc0_lib.dir/DependInfo.cmake"
+  "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/3rd_party/fmt/CMakeFiles/fmt.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

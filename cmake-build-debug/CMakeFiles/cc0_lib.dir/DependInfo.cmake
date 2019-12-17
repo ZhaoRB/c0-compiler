@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/1 project/Clion project/zrb/analyser/analyser.cpp" "D:/1 project/Clion project/zrb/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj"
-  "D:/1 project/Clion project/zrb/tokenizer/tokenizer.cpp" "D:/1 project/Clion project/zrb/cmake-build-debug/CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.obj"
+  "D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj"
+  "D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
