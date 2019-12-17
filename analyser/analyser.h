@@ -5,7 +5,9 @@
 #include "tokenizer/token.h"
 #include "table/constant.h"
 #include "table/function.h"
+#include "table/symbol.h"
 
+#include <utility>
 #include <vector>
 #include <optional>
 #include <utility>
@@ -21,42 +23,41 @@ namespace miniplc0 {
 		using int64_t = std::int64_t;
 		using uint32_t = std::uint32_t;
 		using int32_t = std::int32_t;
+    // 私有属性
+    private:
+        // 所有token
+        std::vector<Token> _tokens;
+        // 文件中的位置
+        std::pair<uint64_t, uint64_t> _current_pos;
+        // 符号表
+        std::vector<Symbol> _symbols;
+
+        // 这三个vector是存储最后要输出的信息，并不是程序运行时候所需要的数据结构
+        // 指令表，用来构造 .s0 /.o0 文件
+        std::vector<Instruction> _instructions;
+        // 常量表和符号表
+        std::vector<Constant> _constants;
+        std::vector<Function> _functions;
+
+        // 这个是指向当前的token
+        std::size_t _offset;
+        // 下一个 token 在栈的偏移
+        int32_t _nextTokenIndex;
+
 	public:
-		Analyser(std::vector<Token> v)
-			: _tokens(std::move(v)), _offset(0), _instructions({}), _current_pos(0, 0),
-			_uninitialized_vars({}), _vars({}), _consts({}), _nextTokenIndex(0) {}
-		Analyser(Analyser&&) = delete;
-		Analyser(const Analyser&) = delete;
-		Analyser& operator=(Analyser) = delete;
+	    // 构造函数
+		explicit Analyser(std::vector<Token> v)
+		    : _tokens(std::move(v)), _current_pos(0,0), _symbols({}),
+            _instructions({}), _constants({}), _functions({}),
+            _offset(0), _nextTokenIndex(0)
+        {}
 
 		// 唯一接口
 		std::pair<std::vector<Instruction>, std::optional<CompilationError>> Analyse();
 	private:
-		// 所有的递归子程序
 
-		// <程序>
-		std::optional<CompilationError> analyseProgram();
-		// <主过程>
-		std::optional<CompilationError> analyseMain();
-		// <常量声明>
-		std::optional<CompilationError> analyseConstantDeclaration();
-		// <变量声明>
-		std::optional<CompilationError> analyseVariableDeclaration();
-		// <语句序列>
-		std::optional<CompilationError> analyseStatementSequence();
-		// <常表达式>
-		// 这里的 out 是常表达式的值
-		std::optional<CompilationError> analyseConstantExpression(int32_t& out);
-		// <表达式>
-		std::optional<CompilationError> analyseExpression();
-		// <赋值语句>
-		std::optional<CompilationError> analyseAssignmentStatement();
-		// <输出语句>
-		std::optional<CompilationError> analyseOutputStatement();
-		// <项>
-		std::optional<CompilationError> analyseItem();
-		// <因子>
-		std::optional<CompilationError> analyseFactor();
+	    // 所有的递归子程序
+	    std::optional<CompilationError> analyseProgram();
 
 		// Token 缓冲区相关操作
 
@@ -83,28 +84,6 @@ namespace miniplc0 {
 		bool isConstant(const std::string&);
 		// 获得 {变量，常量} 在栈上的偏移
 		int32_t getIndex(const std::string&);
-
-
-	private:
-		std::vector<Token> _tokens;
-		std::size_t _offset;
-		std::vector<Instruction> _instructions;
-		std::pair<uint64_t, uint64_t> _current_pos;
-        // 下一个 token 在栈的偏移
-        int32_t _nextTokenIndex;
-
-		// 为了简单处理，我们直接把符号表耦合在语法分析里
-		// 变量                   示例
-		// _uninitialized_vars    int a;
-		// _vars                  int a=1;
-		// _consts                const a=1;
-        //		std::map<std::string, int32_t> _uninitialized_vars;
-        //		std::map<std::string, int32_t> _vars;
-        //		std::map<std::string, int32_t> _consts;
-
-        // 常量表和符号表
-        std::vector<Constant> _constants;
-        std::vector<Function> _functions;
 
 	};
 }

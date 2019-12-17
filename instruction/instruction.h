@@ -86,29 +86,19 @@ namespace miniplc0 {
 
 	// 1.汇编指令 2.二进制指令 3.操作数 4.操作数的二进制形式
 	class Instruction final {
-        private:
-            using int32_t = std::int32_t;
-        public:
-            friend void swap(Instruction& lhs, Instruction& rhs);
-        public:
-            Instruction(Operation opr, int32_t x) : _opr(opr), _x(x) {}
 
-            Instruction() : Instruction(Operation::ILL, 0){}
-            Instruction(const Instruction& i) { _opr = i._opr; _x = i._x; }
-            Instruction(Instruction&& i) :Instruction() { swap(*this, i); }
-            Instruction& operator=(Instruction i) { swap(*this, i); return *this; }
-            bool operator==(const Instruction& i) const { return _opr == i._opr && _x == i._x; }
-
-            Operation GetOperation() const { return _opr; }
-            int32_t GetX() const { return _x; }
-        private:
-            Operation _opr;
-            int32_t _x;
+    private:
+	    Operation opr;
+	    int binary_opr;
+	    std::vector<int> operand;
+    public:
+	    Instruction(Operation _opr, int _binary_opr, std::vector<int> _operand);
 	};
 
-	inline void swap(Instruction& lhs, Instruction& rhs) {
-		using std::swap;
-		swap(lhs._opr, rhs._opr);
-		swap(lhs._x, rhs._x);
+	Instruction::Instruction(Operation _opr, int _binary_opr, std::vector<int> _operand) {
+	    opr = _opr;
+        binary_opr = _binary_opr;
+        operand = std::move(_operand);
 	}
+
 }

@@ -22,7 +22,7 @@ set(lib_src
 set(main_src
 	main.cpp
 	fmts.hpp
-		table/constant.h table/function.h)
+		table/constant.h table/function.h table/symbol.h)
 
 add_library(${PROJECT_LIB} ${lib_src})
 

@@ -350,6 +350,9 @@
 		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/table/function.h">
 			<Option target="cc0"/>
 		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/table/symbol.h">
+			<Option target="cc0"/>
+		</Unit>
 		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/tests/simple_vm.hpp">
 			<Option target="miniplc0_test"/>
 		</Unit>

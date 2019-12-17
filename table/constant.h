@@ -15,15 +15,15 @@ namespace miniplc0 {
     class Constant {
 
     private:
-        std::string type;
+        char type;
         std::string value;
     public:
-        Constant(std::string _type, std::string _value);
+        Constant(char _type, std::string _value);
 
     };
 
-    Constant::Constant(std::string _type, std::string _value){
-        type = std::move(_type);
+    Constant::Constant(char _type, std::string _value){
+        type = _type;
         value = std::move(_value);
     }
     // std::move 节省空间 ？
