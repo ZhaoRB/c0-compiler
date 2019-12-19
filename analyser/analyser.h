@@ -30,7 +30,8 @@ namespace miniplc0 {
         // 文件中的位置
         std::pair<uint64_t, uint64_t> _current_pos;
         // 符号表
-        std::vector<Symbol> _symbols;
+        std::vector<Symbol> _constant_symbols;
+        std::vector<Symbol> _variable_symbols;
 
         // 这三个vector是存储最后要输出的信息，并不是程序运行时候所需要的数据结构
         // 指令表，用来构造 .s0 /.o0 文件
@@ -47,43 +48,45 @@ namespace miniplc0 {
 	public:
 	    // 构造函数
 		explicit Analyser(std::vector<Token> v)
-		    : _tokens(std::move(v)), _current_pos(0,0), _symbols({}),
+		    : _tokens(std::move(v)), _current_pos(0,0),
+		    _constant_symbols({}),_variable_symbols({}),
             _instructions({}), _constants({}), _functions({}),
-            _offset(0), _nextTokenIndex(0)
-        {}
-
+            _offset(0), _nextTokenIndex(0) {}
 		// 唯一接口
 		std::pair<std::vector<Instruction>, std::optional<CompilationError>> Analyse();
 	private:
-
-	    // 所有的递归子程序
-	    std::optional<CompilationError> analyseProgram();
-
-		// Token 缓冲区相关操作
-
+	    /* Token 缓冲区相关操作 */
 		// 返回下一个 token
 		std::optional<Token> nextToken();
 		// 回退一个 token
 		void unreadToken();
 
-		// 下面是符号表相关操作
+		/* 工具函数 */
+		// bool isTypeSpecifier(TokenType t);
+		bool isRelationalOperator(TokenType t);
 
-		// helper function
-		void _add(const Token&, std::map<std::string, int32_t>&);
-		// 添加变量、常量、未初始化的变量
-		void addVariable(const Token&);
-		void addConstant(const Token&);
-		void addUninitializedVariable(const Token&);
-		// 是否被声明过
-		bool isDeclared(const std::string&);
-		// 是否是未初始化的变量
-		bool isUninitializedVariable(const std::string&);
-		// 是否是已初始化的变量
-		bool isInitializedVariable(const std::string&);
-		// 是否是常量
-		bool isConstant(const std::string&);
-		// 获得 {变量，常量} 在栈上的偏移
-		int32_t getIndex(const std::string&);
-
+        // 所有的递static 归子程序
+        std::optional<CompilationError> analyseProgram();
+        std::optional<CompilationError> analyseVariableDeclaration();
+        std::optional<CompilationError> analyseFunctionDeclaration();
+        std::optional<CompilationError> analyseInitDeclarationList();
+        std::optional<CompilationError> analyseInitDeclaration();
+        std::optional<CompilationError> analyseExpression();
+        std::optional<CompilationError> analyseMulExpression();
+        std::optional<CompilationError> analyseUnaryExpression();
+        std::optional<CompilationError> analyseFunctionCall();
+        std::optional<CompilationError> analyseParasList();
+        std::optional<CompilationError> analyseCompoundStatement();
+        std::optional<CompilationError> analyseParasDeclaration();
+        std::optional<CompilationError> analyseStatementSeq();
+        std::optional<CompilationError> analyseStatement();
+        std::optional<CompilationError> analyseCondition();
+        std::optional<CompilationError> analyseConditionStatement();
+        std::optional<CompilationError> analyseLoopStatement();
+        std::optional<CompilationError> analyseJumpStatement();
+        std::optional<CompilationError> analysePrintStatement();
+        std::optional<CompilationError> analysePrintableList();
+        std::optional<CompilationError> analyseScanStatement();
+        std::optional<CompilationError> analyseAssignmentExpression();
 	};
 }

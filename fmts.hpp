@@ -2,6 +2,7 @@
 #include "tokenizer/tokenizer.h"
 #include "analyser/analyser.h"
 
+// Error
 namespace fmt {
 	template<>
 	struct formatter<miniplc0::ErrorCode> {
@@ -89,6 +90,7 @@ namespace fmt {
 	};
 }
 
+// TokenType
 namespace fmt {
 	template<>
 	struct formatter<miniplc0::Token> {
@@ -256,6 +258,7 @@ namespace fmt {
 	};
 }
 
+// Instruction
 namespace fmt {
 	template<>
 	struct formatter<miniplc0::Operation> {

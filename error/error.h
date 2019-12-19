@@ -24,8 +24,6 @@ namespace miniplc0 {
 		ErrInvalidInput,
 		ErrInvalidIdentifier,
 		ErrIntegerOverflow, // int32_t overflow.
-		ErrNoBegin,
-		ErrNoEnd,
 		ErrNeedIdentifier,
 		ErrConstantNeedValue,
 		ErrNoSemicolon,
@@ -39,7 +37,15 @@ namespace miniplc0 {
 		ErrInvalidPrint,
 
 		//新添加
-		ErrNoEqualSign
+		ErrNoEqualSign,
+
+		// c0
+		ErrNoTypeSpecifier,
+		ErrNoBracket,
+        ErrInvalidParameter,
+        ErrNoBigBracket,
+        ErrUnexpected,
+        ErrInvalidStatement,
 	};
 
 	class CompilationError final{
