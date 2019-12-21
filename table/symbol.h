@@ -22,6 +22,9 @@ namespace miniplc0 {
     public:
         Symbol(std::string _name, int _value, bool _isInitialized, int _level);
         void addValue(int _value);
+        std::string getName();
+        int getLevel();
+        int getValue();
     };
 
     Symbol::Symbol(std::string _name, int _value, bool _isInitialized, int _level) {
@@ -34,6 +37,18 @@ namespace miniplc0 {
     void Symbol::addValue(int _value) {
         value = _value;
         isInitialized = true;
+    }
+
+    std::string Symbol::getName() {
+        return name;
+    }
+
+    int Symbol::getLevel() {
+        return level;
+    }
+
+    int Symbol::getValue() {
+        return value;
     }
 }
 

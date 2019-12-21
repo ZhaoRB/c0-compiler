@@ -344,6 +344,9 @@
 		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/main.cpp">
 			<Option target="cc0"/>
 		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/table/compilingFunction.h">
+			<Option target="cc0"/>
+		</Unit>
 		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/table/constant.h">
 			<Option target="cc0"/>
 		</Unit>

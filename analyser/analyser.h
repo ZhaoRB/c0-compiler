@@ -6,6 +6,7 @@
 #include "table/constant.h"
 #include "table/function.h"
 #include "table/symbol.h"
+#include "table/compilingFunction.h"
 
 #include <utility>
 #include <vector>
@@ -14,6 +15,9 @@
 #include <map>
 #include <cstdint>
 #include <cstddef> // for std::size_t
+#include <algorithm>
+#include <stack>
+#include <sstream>
 
 namespace miniplc0 {
 
@@ -30,8 +34,15 @@ namespace miniplc0 {
         // 文件中的位置
         std::pair<uint64_t, uint64_t> _current_pos;
         // 符号表
-        std::vector<Symbol> _constant_symbols;
-        std::vector<Symbol> _variable_symbols;
+        std::vector<Symbol> _constant_symbols;   //常量表
+        std::vector<Symbol> _variable_symbols;   //变量表
+        bool isConstant;
+        int _current_level;
+        // 一个运行时的函数表 存储函数名和参数类型
+        std::vector<CompilingFunction> _compilingFunctions;
+
+        //用于计算expession的值
+        std::stack<int> _calculate_stack;
 
         // 这三个vector是存储最后要输出的信息，并不是程序运行时候所需要的数据结构
         // 指令表，用来构造 .s0 /.o0 文件
@@ -50,6 +61,7 @@ namespace miniplc0 {
 		explicit Analyser(std::vector<Token> v)
 		    : _tokens(std::move(v)), _current_pos(0,0),
 		    _constant_symbols({}),_variable_symbols({}),
+		    isConstant(false),_current_level(0),
             _instructions({}), _constants({}), _functions({}),
             _offset(0), _nextTokenIndex(0) {}
 		// 唯一接口
@@ -63,7 +75,12 @@ namespace miniplc0 {
 
 		/* 工具函数 */
 		// bool isTypeSpecifier(TokenType t);
-		bool isRelationalOperator(TokenType t);
+		static bool isRelationalOperator(TokenType t);
+        std::optional<CompilationError> checkDeclare(std::optional<Token> identifier);
+        std::optional<CompilingFunction> findFunction(std::optional<Token> identifier);
+        void addToSymbolList(std::optional<Token> identifier);
+        void calculate(TokenType tk);
+        std::optional<Symbol> findIdentifier(const std::string& name);
 
         // 所有的递static 归子程序
         std::optional<CompilationError> analyseProgram();
