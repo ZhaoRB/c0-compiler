@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
-#include <sstream>
+#include <string>
 
 namespace miniplc0 {
 
@@ -76,24 +76,31 @@ namespace miniplc0 {
         int levelVariable = -1;
         int indexConstant = -1;
         int indexVariable = -1;
-        for (unsigned long long i=_constant_symbols.size()-1; i>=0; i--) {
-            std::string _name = _constant_symbols[i].getName();
-            if (name == _name) {
-                levelConstant = _constant_symbols[i].getLevel();
-                indexConstant = (int) i;
-                break;
+        int n = _constant_symbols.size();
+        if (n != 0) {
+            for (int i=n-1; i>=0; i--) {
+                std::string _name = _constant_symbols[i].getName();
+                if (name == _name) {
+                    levelConstant = _constant_symbols[i].getLevel();
+                    indexConstant = i;
+                    break;
+                }
             }
         }
-        for (unsigned long long i=_variable_symbols.size()-1; i>=0; i--) {
-            std::string _name = _variable_symbols[i].getName();
-            if (name == _name) {
-                levelVariable = _variable_symbols[i].getLevel();
-                indexVariable = (int) i;
-                break;
+        n = _variable_symbols.size();
+        if (n != 0) {
+            for (int i=n-1; i>=0; i--) {
+                std::string _name = _variable_symbols[i].getName();
+                if (name == _name) {
+                    levelVariable = _variable_symbols[i].getLevel();
+                    indexVariable = i;
+                    break;
+                }
             }
         }
+
         if (levelConstant == -1 && levelVariable == -1)
-            return std::optional<Symbol>();
+            return {};
         else if (levelConstant != -1 && levelVariable != -1) {
             if (levelConstant > levelVariable)
                 return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
@@ -108,17 +115,27 @@ namespace miniplc0 {
     std::optional<Symbol> Analyser::findConstantIdentifier(std::optional<Token> identifier) {
         auto name = identifier.value().GetValueString();
         int indexConstant = -1;
-        for (unsigned long long i=_constant_symbols.size()-1; i>=0; i--) {
-            std::string _name = _constant_symbols[i].getName();
-            if (name == _name) {
-                indexConstant = (int) i;
-                break;
+        int n = _constant_symbols.size();
+        if (n == 0)
+            return {};
+        else {
+            for (int i=n-1; i>=0; i--) {
+                std::string _name = _constant_symbols[i].getName();
+                if (name == _name) {
+                    indexConstant = i;
+                    break;
+                }
             }
         }
         if (indexConstant == -1)
-            return std::optional<Symbol>();
-        else
-            return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
+            return {};
+        else {
+            std::string _name = _constant_symbols[indexConstant].getName();
+            int _level = _constant_symbols[indexConstant].getLevel();
+            return std::make_optional<Symbol>(_name,_level);
+        }
+        // return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
+        return {};
     }
 
     // 查函数表
@@ -130,7 +147,7 @@ namespace miniplc0 {
                 return std::make_optional<CompilingFunction>(_compilingFunction);
         }
         // 没找到 返回空
-        return std::optional<CompilingFunction>();
+        return {};
     }
 
 
@@ -143,9 +160,9 @@ namespace miniplc0 {
         while (true) {
             auto next = nextToken();
             auto type = next.value().GetType();
-            // 文件为空, 正常返回
+            // 没有main函数 返回错误
             if (!next.has_value())
-                return {};
+                return std::make_optional<CompilationError>(_current_pos,ErrNoMainFunction);
             else {
                 if (type == TokenType::CONST) {
                     unreadToken(); //退回const
@@ -179,8 +196,12 @@ namespace miniplc0 {
         // 函数声明语句是0个或多个
         while (true) {
             auto next = nextToken();
-            if (!next.has_value())
-                return {};
+            if (!next.has_value()) {
+                if (!hasMain)
+                    return std::make_optional<CompilationError>(_current_pos,ErrNoMainFunction);
+                else
+                    return {};
+            }
             else {
                 unreadToken();
                 auto err = analyseFunctionDeclaration();
@@ -244,8 +265,10 @@ namespace miniplc0 {
 	    while (true) {
 	        auto next = nextToken();
 	        auto type = next.value().GetType();
-	        if (type == TokenType::SEMICOLON)
+	        if (type == TokenType::SEMICOLON) {
+	            unreadToken();
                 break;
+	        }
 	        else if (type == TokenType::COMMA_SIGN) {
                 err = analyseInitDeclaration();
                 if (err.has_value())
@@ -267,7 +290,9 @@ namespace miniplc0 {
         else {
             // 检查同level是否已经被声明过
             // 检查 常量表 变量表
+            std::string name = identifier.value().GetValueString();
             auto symbol = findIdentifier(identifier);
+            // auto symbol = findConstantIdentifier(identifier);
             if (symbol.has_value() && symbol.value().getLevel() == _current_level)
                 return std::make_optional<CompilationError>(_current_pos,ErrHasDeclared);
 
@@ -307,8 +332,10 @@ namespace miniplc0 {
                     return err;
                 // 生成指令
             }
-            else
+            else {
+                unreadToken();
                 break;
+            }
         }
         // 生成相应操作？
 
@@ -329,8 +356,10 @@ namespace miniplc0 {
                     return err;
                 // 生成指令
             }
-            else
+            else {
+                unreadToken();
                 break;
+            }
         }
         // 生成乘除指令
         return {};
@@ -467,8 +496,11 @@ namespace miniplc0 {
 
         next = nextToken();
         type = next.value().GetType();
-        if (!next.has_value() || type == TokenType::IDENTIFIER)
+        if (!next.has_value() || type != TokenType::IDENTIFIER)
             return std::make_optional<CompilationError>(_current_pos,ErrNeedIdentifier);
+        if (next.value().GetValueString() == "main")
+            hasMain = true;
+
 
         // 查重
         // 查符号表

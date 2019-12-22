@@ -1,0 +1,17 @@
+int a;
+const int b = 10;
+
+int function(int a)
+{
+    int c = 100;
+    return c+a;
+}
+
+int main()
+{
+    a = 101;
+    if (c >= 0) {
+        a = 102;
+    }
+    return 0;
+}

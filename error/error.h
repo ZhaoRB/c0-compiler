@@ -54,6 +54,7 @@ namespace miniplc0 {
         ErrIncorrectType,
         ErrIncorrectReturnType,
         ErrConstantNeedValue,
+        ErrNoMainFunction,
 	};
 
 	class CompilationError final{

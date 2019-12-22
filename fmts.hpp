@@ -106,9 +106,11 @@ namespace fmt {
             case miniplc0::ErrIncorrectReturnType:
                 name = "incorrect return type";
                 break;
-
             case miniplc0::ErrNoBracket:
                 name = "no bracket here";
+                break;
+            case miniplc0::ErrNoMainFunction:
+                name = "no main function in this program";
                 break;
             }
             return format_to(ctx.out(), name);
