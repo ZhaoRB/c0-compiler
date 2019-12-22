@@ -31,12 +31,6 @@ namespace fmt {
 			case miniplc0::ErrIntegerOverflow:
 				name = "The integer is too big(int64_t).";
 				break;
-			case miniplc0::ErrNoBegin:
-				name = "The program should start with 'begin'.";
-				break;
-			case miniplc0::ErrNoEnd:
-				name = "The program should end with 'end'.";
-				break;
 			case miniplc0::ErrNeedIdentifier:
 				name = "Need an identifier here.";
 				break;
@@ -73,9 +67,52 @@ namespace fmt {
             case miniplc0::ErrNoEqualSign:
                 name = "Need an equal sign here";
                 break;
-			}
-			return format_to(ctx.out(), name);
-		}
+            case miniplc0::ErrNoTypeSpecifier:
+                name = "Need a type specifier here";
+                break;
+            case miniplc0::ErrInvalidParameter:
+                name = "can not be a parameter here";
+                break;
+            case miniplc0::ErrNoBigBracket:
+                name = "Need left or right big bracket here";
+                break;
+            case miniplc0::ErrUnexpected:
+                name = "An unexpected error";
+                break;
+            case miniplc0::ErrInvalidStatement:
+                name = "this statement is invalid";
+                break;
+            case miniplc0::ErrHasDeclared:
+                name = "the identifier has been declared";
+                break;
+            case miniplc0::ErrUsedIdentifierName:
+                name = "the identifier has been declared";
+                break;
+            case miniplc0::ErrIdentifierNotDeclare:
+                name = "identifier has never been declared";
+                break;
+            case miniplc0::ErrFunctionNameHasBeenOverride:
+                name = "function name has been recovered in this level";
+                break;
+            case miniplc0::ErrFunctionNotDeclare:
+                name = "the function has not been declared";
+                break;
+            case miniplc0::ErrIncorrectParaNum:
+                name = "the paramenter is not expected here";
+                break;
+            case miniplc0::ErrIncorrectType:
+                name = "incorrect type";
+                break;
+            case miniplc0::ErrIncorrectReturnType:
+                name = "incorrect return type";
+                break;
+
+            case miniplc0::ErrNoBracket:
+                name = "no bracket here";
+                break;
+            }
+            return format_to(ctx.out(), name);
+        }
 	};
 
 	template<>
@@ -269,34 +306,127 @@ namespace fmt {
 		auto format(const miniplc0::Operation &p, FormatContext &ctx) {
 			std::string name;
 			switch (p) {
-			case miniplc0::ILL:
-				name = "ILL";
+
 				break;
-			case miniplc0::ADD:
-				name = "ADD";
-				break;
-			case miniplc0::SUB:
-				name = "SUB";
-				break;
-			case miniplc0::MUL:
-				name = "MUL";
-				break;
-			case miniplc0::DIV:
-				name = "DIV";
-				break;
-			case miniplc0::WRT:
-				name = "WRT";
-				break;
-			case miniplc0::LIT:
-				name = "LIT";
-				break;
-			case miniplc0::LOD:
-				name = "LOD";
-				break;
-			case miniplc0::STO:
-				name = "STO";
-				break;
-			}
+                case miniplc0::NOP:
+                    break;
+                case miniplc0::BIPUSH:
+                    break;
+                case miniplc0::IPUSH:
+                    break;
+                case miniplc0::POP:
+                    break;
+                case miniplc0::POP2:
+                    break;
+                case miniplc0::POPN:
+                    break;
+                case miniplc0::DUP:
+                    break;
+                case miniplc0::DUP2:
+                    break;
+                case miniplc0::LOADC:
+                    break;
+                case miniplc0::LOADA:
+                    break;
+                case miniplc0::NEW:
+                    break;
+                case miniplc0::SNEW:
+                    break;
+                case miniplc0::ILOAD:
+                    break;
+                case miniplc0::DLOAD:
+                    break;
+                case miniplc0::ALOAD:
+                    break;
+                case miniplc0::IALOAD:
+                    break;
+                case miniplc0::DALOAD:
+                    break;
+                case miniplc0::AALOAD:
+                    break;
+                case miniplc0::ISTORE:
+                    break;
+                case miniplc0::DSTORE:
+                    break;
+                case miniplc0::ASTORE:
+                    break;
+                case miniplc0::IASTORE:
+                    break;
+                case miniplc0::DASTORE:
+                    break;
+                case miniplc0::AASTROE:
+                    break;
+                case miniplc0::IADD:
+                    break;
+                case miniplc0::DADD:
+                    break;
+                case miniplc0::ISUB:
+                    break;
+                case miniplc0::DSUB:
+                    break;
+                case miniplc0::IMUL:
+                    break;
+                case miniplc0::DMUL:
+                    break;
+                case miniplc0::IDIV:
+                    break;
+                case miniplc0::DDIV:
+                    break;
+                case miniplc0::INEG:
+                    break;
+                case miniplc0::DNEG:
+                    break;
+                case miniplc0::ICMP:
+                    break;
+                case miniplc0::DCMP:
+                    break;
+                case miniplc0::I2D:
+                    break;
+                case miniplc0::D2I:
+                    break;
+                case miniplc0::I2C:
+                    break;
+                case miniplc0::JMP:
+                    break;
+                case miniplc0::JE:
+                    break;
+                case miniplc0::JNE:
+                    break;
+                case miniplc0::JL:
+                    break;
+                case miniplc0::JGE:
+                    break;
+                case miniplc0::JG:
+                    break;
+                case miniplc0::JLE:
+                    break;
+                case miniplc0::CALL:
+                    break;
+                case miniplc0::RET:
+                    break;
+                case miniplc0::IRET:
+                    break;
+                case miniplc0::DRET:
+                    break;
+                case miniplc0::ARET:
+                    break;
+                case miniplc0::IPRINT:
+                    break;
+                case miniplc0::DPRINT:
+                    break;
+                case miniplc0::CPRINT:
+                    break;
+                case miniplc0::SPRINT:
+                    break;
+                case miniplc0::PRINTL:
+                    break;
+                case miniplc0::ISCAN:
+                    break;
+                case miniplc0::DSCAN:
+                    break;
+                case miniplc0::CSCAN:
+                    break;
+            }
 			return format_to(ctx.out(), name);
 		}
 	};
@@ -310,18 +440,127 @@ namespace fmt {
 			std::string name;
 			switch (p.GetOperation())
 			{
-			case miniplc0::ILL:
-			case miniplc0::ADD:
-			case miniplc0::SUB:
-			case miniplc0::MUL:
-			case miniplc0::DIV:
-			case miniplc0::WRT:
-				return format_to(ctx.out(), "{}", p.GetOperation());
-			case miniplc0::LIT:
-			case miniplc0::LOD:
-			case miniplc0::STO:
-				return format_to(ctx.out(), "{} {}", p.GetOperation(), p.GetX());
-			}
+			    // return format_to(ctx.out(), "{}", p.GetOperation());
+				// return format_to(ctx.out(), "{} {}", p.GetOperation(), p.GetX());
+                case miniplc0::NOP:
+                    break;
+                case miniplc0::BIPUSH:
+                    break;
+                case miniplc0::IPUSH:
+                    break;
+                case miniplc0::POP:
+                    break;
+                case miniplc0::POP2:
+                    break;
+                case miniplc0::POPN:
+                    break;
+                case miniplc0::DUP:
+                    break;
+                case miniplc0::DUP2:
+                    break;
+                case miniplc0::LOADC:
+                    break;
+                case miniplc0::LOADA:
+                    break;
+                case miniplc0::NEW:
+                    break;
+                case miniplc0::SNEW:
+                    break;
+                case miniplc0::ILOAD:
+                    break;
+                case miniplc0::DLOAD:
+                    break;
+                case miniplc0::ALOAD:
+                    break;
+                case miniplc0::IALOAD:
+                    break;
+                case miniplc0::DALOAD:
+                    break;
+                case miniplc0::AALOAD:
+                    break;
+                case miniplc0::ISTORE:
+                    break;
+                case miniplc0::DSTORE:
+                    break;
+                case miniplc0::ASTORE:
+                    break;
+                case miniplc0::IASTORE:
+                    break;
+                case miniplc0::DASTORE:
+                    break;
+                case miniplc0::AASTROE:
+                    break;
+                case miniplc0::IADD:
+                    break;
+                case miniplc0::DADD:
+                    break;
+                case miniplc0::ISUB:
+                    break;
+                case miniplc0::DSUB:
+                    break;
+                case miniplc0::IMUL:
+                    break;
+                case miniplc0::DMUL:
+                    break;
+                case miniplc0::IDIV:
+                    break;
+                case miniplc0::DDIV:
+                    break;
+                case miniplc0::INEG:
+                    break;
+                case miniplc0::DNEG:
+                    break;
+                case miniplc0::ICMP:
+                    break;
+                case miniplc0::DCMP:
+                    break;
+                case miniplc0::I2D:
+                    break;
+                case miniplc0::D2I:
+                    break;
+                case miniplc0::I2C:
+                    break;
+                case miniplc0::JMP:
+                    break;
+                case miniplc0::JE:
+                    break;
+                case miniplc0::JNE:
+                    break;
+                case miniplc0::JL:
+                    break;
+                case miniplc0::JGE:
+                    break;
+                case miniplc0::JG:
+                    break;
+                case miniplc0::JLE:
+                    break;
+                case miniplc0::CALL:
+                    break;
+                case miniplc0::RET:
+                    break;
+                case miniplc0::IRET:
+                    break;
+                case miniplc0::DRET:
+                    break;
+                case miniplc0::ARET:
+                    break;
+                case miniplc0::IPRINT:
+                    break;
+                case miniplc0::DPRINT:
+                    break;
+                case miniplc0::CPRINT:
+                    break;
+                case miniplc0::SPRINT:
+                    break;
+                case miniplc0::PRINTL:
+                    break;
+                case miniplc0::ISCAN:
+                    break;
+                case miniplc0::DSCAN:
+                    break;
+                case miniplc0::CSCAN:
+                    break;
+            }
 			return format_to(ctx.out(), "ILL");
 		}
 	};

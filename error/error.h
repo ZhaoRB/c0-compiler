@@ -46,12 +46,13 @@ namespace miniplc0 {
         ErrUnexpected,
         ErrInvalidStatement,
         ErrHasDeclared,
-        ErrConflictWithFunctionName,
+        ErrUsedIdentifierName,
         ErrIdentifierNotDeclare,
         ErrFunctionNameHasBeenOverride,
         ErrFunctionNotDeclare,
         ErrIncorrectParaNum,
-
+        ErrIncorrectType,
+        ErrIncorrectReturnType,
         ErrConstantNeedValue,
 	};
 

@@ -33,17 +33,18 @@ namespace miniplc0 {
         std::vector<Token> _tokens;
         // 文件中的位置
         std::pair<uint64_t, uint64_t> _current_pos;
+
+        // “语义分析”用到的
         // 符号表
+        // 编译的时候用来判断是否重复声明，是否存在
         std::vector<Symbol> _constant_symbols;   //常量表
         std::vector<Symbol> _variable_symbols;   //变量表
+        std::vector<CompilingFunction> _compilingFunctions;  //函数表
         bool isConstant;
         int _current_level;
-        // 一个运行时的函数表 存储函数名和参数类型
-        std::vector<CompilingFunction> _compilingFunctions;
+        bool isVoid;
 
-        //用于计算expession的值
-        std::stack<int> _calculate_stack;
-
+        // “目标代码生成”时使用
         // 这三个vector是存储最后要输出的信息，并不是程序运行时候所需要的数据结构
         // 指令表，用来构造 .s0 /.o0 文件
         std::vector<Instruction> _instructions;
@@ -61,7 +62,7 @@ namespace miniplc0 {
 		explicit Analyser(std::vector<Token> v)
 		    : _tokens(std::move(v)), _current_pos(0,0),
 		    _constant_symbols({}),_variable_symbols({}),
-		    isConstant(false),_current_level(0),
+		    isConstant(false),_current_level(0),isVoid(false),
             _instructions({}), _constants({}), _functions({}),
             _offset(0), _nextTokenIndex(0) {}
 		// 唯一接口
@@ -76,13 +77,15 @@ namespace miniplc0 {
 		/* 工具函数 */
 		// bool isTypeSpecifier(TokenType t);
 		static bool isRelationalOperator(TokenType t);
-        std::optional<CompilationError> checkDeclare(std::optional<Token> identifier);
-        std::optional<CompilingFunction> findFunction(std::optional<Token> identifier);
+		// 添加
         void addToSymbolList(std::optional<Token> identifier);
-        void calculate(TokenType tk);
-        std::optional<Symbol> findIdentifier(const std::string& name);
+        void addToCompilingFunctions(std::optional<Token> identifier, int paraNum, std::string type);
+        // 查找
+        std::optional<CompilingFunction> findFunction(std::optional<Token> identifier);
+        std::optional<Symbol> findIdentifier(std::optional<Token> identifier);
+        std::optional<Symbol> findConstantIdentifier(std::optional<Token> identifier);
 
-        // 所有的递static 归子程序
+        // 所有的递归子程序
         std::optional<CompilationError> analyseProgram();
         std::optional<CompilationError> analyseVariableDeclaration();
         std::optional<CompilationError> analyseFunctionDeclaration();
@@ -91,8 +94,8 @@ namespace miniplc0 {
         std::optional<CompilationError> analyseExpression();
         std::optional<CompilationError> analyseMulExpression();
         std::optional<CompilationError> analyseUnaryExpression();
-        std::optional<CompilationError> analyseFunctionCall();
-        std::optional<CompilationError> analyseParasList();
+        std::optional<CompilationError> analyseFunctionCall(bool isExpression);
+        std::optional<CompilationError> analyseParasList(std::optional<Token> functionType);
         std::optional<CompilationError> analyseCompoundStatement();
         std::optional<CompilationError> analyseParasDeclaration();
         std::optional<CompilationError> analyseStatementSeq();

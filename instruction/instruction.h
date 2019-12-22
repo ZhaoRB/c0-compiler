@@ -93,6 +93,8 @@ namespace miniplc0 {
 	    std::vector<int> operand;
     public:
 	    Instruction(Operation _opr, int _binary_opr, std::vector<int> _operand);
+        Operation GetOperation() const { return opr; }
+        int32_t GetX() const { return binary_opr; }
 	};
 
 	Instruction::Instruction(Operation _opr, int _binary_opr, std::vector<int> _operand) {

@@ -18,17 +18,18 @@ namespace miniplc0 {
         // 存储参数的类型
         // 但是基础c0 只有int 所以其实也没什么必要 只需要存一个参数的数量就行了
         int parameterNum;
-        // std::vector<std::string> paras;
+        std::string returnType;
     public:
-        CompilingFunction(std::string _functionName, int _parameterNum);
-        // void addParas(const std::string& parameterType);
+        CompilingFunction(std::string _functionName, int _parameterNum, std::string _returnType);
         std::string getName();
         int getNum();
         void addNum();
+        std::string getType();
     };
-    CompilingFunction::CompilingFunction(std::string _functionName, int _parameterNum) {
+    CompilingFunction::CompilingFunction(std::string _functionName, int _parameterNum, std::string _returnType) {
         functionName = std::move(_functionName);
         parameterNum = _parameterNum;
+        returnType = std::move(_returnType);
     }
     std::string CompilingFunction::getName() {
         return functionName;
@@ -38,6 +39,10 @@ namespace miniplc0 {
     }
     void CompilingFunction::addNum() {
         parameterNum++;
+    }
+
+    std::string CompilingFunction::getType() {
+        return returnType;
     }
 
 }
