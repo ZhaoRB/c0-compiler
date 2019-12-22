@@ -18,23 +18,20 @@ namespace miniplc0 {
         std::string name;
         int level;
     public:
-        Symbol(std::string _name, int _level);
+        Symbol(std::string _name, int _level)
+            : name(std::move(_name)), level(_level) {}
+
+    public:
         std::string getName();
         int getLevel();
     };
 
-    Symbol::Symbol(std::string _name, int _level) {
-        name = std::move(_name);
-        level = _level;
-    }
+//    Symbol::Symbol(std::string _name, int _level) {
+//        name = std::move(_name);
+//        level = _level;
+//    }
 
-    std::string Symbol::getName() {
-        return name;
-    }
 
-    int Symbol::getLevel() {
-        return level;
-    }
 
 }
 

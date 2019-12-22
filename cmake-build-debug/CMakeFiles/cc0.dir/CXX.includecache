@@ -1,0 +1,220 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../3rd_party/argparse/include/argparse.hpp
+iostream
+-
+string
+-
+map
+-
+vector
+-
+list
+-
+functional
+-
+any
+-
+memory
+-
+type_traits
+-
+algorithm
+-
+sstream
+-
+stdexcept
+-
+numeric
+-
+iomanip
+-
+iterator
+-
+
+../3rd_party/fmt/include/fmt/core.h
+cassert
+-
+cstdio
+-
+cstring
+-
+iterator
+-
+string
+-
+type_traits
+-
+string_view
+-
+experimental/string_view
+-
+fmt/core.h
+-
+
+../error/error.h
+cstdint
+-
+string
+-
+utility
+-
+iostream
+-
+
+../instruction/instruction.h
+cstdint
+-
+utility
+-
+vector
+-
+
+../table/compilingFunction.h
+string
+-
+utility
+-
+vector
+-
+
+../table/constant.h
+string
+-
+utility
+-
+
+../table/function.h
+
+../table/symbol.h
+string
+-
+utility
+-
+
+../tokenizer/token.h
+error/error.h
+../tokenizer/error/error.h
+any
+-
+string
+-
+cstdint
+-
+
+../tokenizer/utils.hpp
+cctype
+-
+
+D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
+error/error.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/error/error.h
+instruction/instruction.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/instruction/instruction.h
+tokenizer/token.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/tokenizer/token.h
+table/constant.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/table/constant.h
+table/function.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/table/function.h
+table/symbol.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/table/symbol.h
+table/compilingFunction.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/table/compilingFunction.h
+utility
+-
+vector
+-
+optional
+-
+utility
+-
+map
+-
+cstdint
+-
+cstddef
+-
+algorithm
+-
+stack
+-
+sstream
+-
+
+D:/1 project/Clion project/c0/c0-compiler/fmts.hpp
+fmt/core.h
+D:/1 project/Clion project/c0/c0-compiler/fmt/core.h
+tokenizer/tokenizer.h
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.h
+analyser/analyser.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
+
+D:/1 project/Clion project/c0/c0-compiler/main.cpp
+argparse.hpp
+D:/1 project/Clion project/c0/c0-compiler/argparse.hpp
+fmt/core.h
+D:/1 project/Clion project/c0/c0-compiler/fmt/core.h
+tokenizer/tokenizer.h
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.h
+analyser/analyser.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
+fmts.hpp
+D:/1 project/Clion project/c0/c0-compiler/fmts.hpp
+iostream
+-
+fstream
+-
+
+D:/1 project/Clion project/c0/c0-compiler/table/compilingFunction.cpp
+compilingFunction.h
+D:/1 project/Clion project/c0/c0-compiler/table/compilingFunction.h
+string
+-
+
+D:/1 project/Clion project/c0/c0-compiler/table/compilingFunction.h
+string
+-
+utility
+-
+vector
+-
+
+D:/1 project/Clion project/c0/c0-compiler/table/symbol.cpp
+symbol.h
+D:/1 project/Clion project/c0/c0-compiler/table/symbol.h
+
+D:/1 project/Clion project/c0/c0-compiler/table/symbol.h
+string
+-
+utility
+-
+
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.h
+tokenizer/token.h
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer/token.h
+tokenizer/utils.hpp
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer/utils.hpp
+error/error.h
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/error/error.h
+utility
+-
+optional
+-
+iostream
+-
+cstdint
+-
+memory
+-
+vector
+-
+string
+-
+

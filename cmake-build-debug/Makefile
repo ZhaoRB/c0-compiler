@@ -272,6 +272,60 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+table/compilingFunction.obj: table/compilingFunction.cpp.obj
+
+.PHONY : table/compilingFunction.obj
+
+# target to build an object file
+table/compilingFunction.cpp.obj:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/table/compilingFunction.cpp.obj
+.PHONY : table/compilingFunction.cpp.obj
+
+table/compilingFunction.i: table/compilingFunction.cpp.i
+
+.PHONY : table/compilingFunction.i
+
+# target to preprocess a source file
+table/compilingFunction.cpp.i:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/table/compilingFunction.cpp.i
+.PHONY : table/compilingFunction.cpp.i
+
+table/compilingFunction.s: table/compilingFunction.cpp.s
+
+.PHONY : table/compilingFunction.s
+
+# target to generate assembly for a file
+table/compilingFunction.cpp.s:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/table/compilingFunction.cpp.s
+.PHONY : table/compilingFunction.cpp.s
+
+table/symbol.obj: table/symbol.cpp.obj
+
+.PHONY : table/symbol.obj
+
+# target to build an object file
+table/symbol.cpp.obj:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/table/symbol.cpp.obj
+.PHONY : table/symbol.cpp.obj
+
+table/symbol.i: table/symbol.cpp.i
+
+.PHONY : table/symbol.i
+
+# target to preprocess a source file
+table/symbol.cpp.i:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/table/symbol.cpp.i
+.PHONY : table/symbol.cpp.i
+
+table/symbol.s: table/symbol.cpp.s
+
+.PHONY : table/symbol.s
+
+# target to generate assembly for a file
+table/symbol.cpp.s:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/table/symbol.cpp.s
+.PHONY : table/symbol.cpp.s
+
 tests/test_analyser.obj: tests/test_analyser.cpp.obj
 
 .PHONY : tests/test_analyser.obj
@@ -403,6 +457,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... table/compilingFunction.obj
+	@echo ... table/compilingFunction.i
+	@echo ... table/compilingFunction.s
+	@echo ... table/symbol.obj
+	@echo ... table/symbol.i
+	@echo ... table/symbol.s
 	@echo ... tests/test_analyser.obj
 	@echo ... tests/test_analyser.i
 	@echo ... tests/test_analyser.s

@@ -20,30 +20,19 @@ namespace miniplc0 {
         int parameterNum;
         std::string returnType;
     public:
-        CompilingFunction(std::string _functionName, int _parameterNum, std::string _returnType);
+        CompilingFunction(std::string _functionName, int _parameterNum, std::string _returnType)
+            : functionName(std::move(_functionName)), parameterNum(_parameterNum), returnType(std::move(_returnType)) {}
         std::string getName();
         int getNum();
         void addNum();
         std::string getType();
     };
-    CompilingFunction::CompilingFunction(std::string _functionName, int _parameterNum, std::string _returnType) {
-        functionName = std::move(_functionName);
-        parameterNum = _parameterNum;
-        returnType = std::move(_returnType);
-    }
-    std::string CompilingFunction::getName() {
-        return functionName;
-    }
-    int CompilingFunction::getNum() {
-        return parameterNum;
-    }
-    void CompilingFunction::addNum() {
-        parameterNum++;
-    }
+//    CompilingFunction::CompilingFunction(std::string _functionName, int _parameterNum, std::string _returnType) {
+//        functionName = std::move(_functionName);
+//        parameterNum = _parameterNum;
+//        returnType = std::move(_returnType);
+//    }
 
-    std::string CompilingFunction::getType() {
-        return returnType;
-    }
 
 }
 

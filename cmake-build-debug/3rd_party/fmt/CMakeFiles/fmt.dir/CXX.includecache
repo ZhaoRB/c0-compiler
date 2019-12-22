@@ -102,13 +102,13 @@ xlocale.h
 format.h
 ../3rd_party/fmt/include/fmt/format.h
 
-D:/1 project/Clion project/zrb/3rd_party/fmt/src/format.cc
+D:/1 project/Clion project/c0/c0-compiler/3rd_party/fmt/src/format.cc
 fmt/format-inl.h
-D:/1 project/Clion project/zrb/3rd_party/fmt/src/fmt/format-inl.h
+D:/1 project/Clion project/c0/c0-compiler/3rd_party/fmt/src/fmt/format-inl.h
 
-D:/1 project/Clion project/zrb/3rd_party/fmt/src/posix.cc
+D:/1 project/Clion project/c0/c0-compiler/3rd_party/fmt/src/posix.cc
 fmt/posix.h
-D:/1 project/Clion project/zrb/3rd_party/fmt/src/fmt/posix.h
+D:/1 project/Clion project/c0/c0-compiler/3rd_party/fmt/src/fmt/posix.h
 limits.h
 -
 sys/stat.h

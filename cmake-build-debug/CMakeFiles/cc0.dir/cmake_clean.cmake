@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/cc0.dir/main.cpp.obj"
+  "CMakeFiles/cc0.dir/table/compilingFunction.cpp.obj"
+  "CMakeFiles/cc0.dir/table/symbol.cpp.obj"
   "cc0.exe"
   "cc0.exe.manifest"
   "cc0.pdb"

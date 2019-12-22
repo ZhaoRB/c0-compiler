@@ -93,7 +93,7 @@ namespace miniplc0 {
             }
         }
         if (levelConstant == -1 && levelVariable == -1)
-            return std::make_optional<Symbol>();
+            return std::optional<Symbol>();
         else if (levelConstant != -1 && levelVariable != -1) {
             if (levelConstant > levelVariable)
                 return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
@@ -130,7 +130,7 @@ namespace miniplc0 {
                 return std::make_optional<CompilingFunction>(_compilingFunction);
         }
         // 没找到 返回空
-        return std::make_optional<CompilingFunction>();
+        return std::optional<CompilingFunction>();
     }
 
 
@@ -342,8 +342,12 @@ namespace miniplc0 {
 	    // 预读 处理前面可能有的正负号
         auto next = nextToken();
         auto type = next.value().GetType();
-        if (type == TokenType::PLUS_SIGN);
-        else if (type == TokenType::MINUS_SIGN);
+        if (type == TokenType::PLUS_SIGN) {
+            int a = 1; //zhanwei
+        }
+        else if (type == TokenType::MINUS_SIGN) {
+            int a = 1;  // zhanwei
+        }
         else
             unreadToken();
 

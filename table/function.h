@@ -15,14 +15,15 @@ namespace miniplc0 {
         int paras_size;
         int level;
     public:
-        Function(int _name_size, int _paras_size, int _level);
+        Function(int _name_size, int _paras_size, int _level)
+            : name_index(_name_size), paras_size(_paras_size), level(_level) {}
     };
 
-    Function::Function(int _name_size, int _paras_size, int _level) {
-        name_index = _name_size;
-        paras_size = _paras_size;
-        level = _level;
-    }
+//    Function::Function(int _name_size, int _paras_size, int _level) {
+//        name_index = _name_size;
+//        paras_size = _paras_size;
+//        level = _level;
+//    }
 }
 
 

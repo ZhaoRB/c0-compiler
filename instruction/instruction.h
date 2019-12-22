@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <utility>
+#include <vector>
 
 namespace miniplc0 {
 
@@ -92,15 +93,16 @@ namespace miniplc0 {
 	    int binary_opr;
 	    std::vector<int> operand;
     public:
-	    Instruction(Operation _opr, int _binary_opr, std::vector<int> _operand);
+	    Instruction(Operation _opr, int _binary_opr, std::vector<int> _operand)
+	        :opr(_opr), binary_opr(_binary_opr), operand(std::move(_operand)) {}
         Operation GetOperation() const { return opr; }
         int32_t GetX() const { return binary_opr; }
 	};
 
-	Instruction::Instruction(Operation _opr, int _binary_opr, std::vector<int> _operand) {
-	    opr = _opr;
-        binary_opr = _binary_opr;
-        operand = std::move(_operand);
-	}
+//	Instruction::Instruction(Operation _opr, int _binary_opr, std::vector<int> _operand) {
+//	    opr = _opr;
+//        binary_opr = _binary_opr;
+//        operand = std::move(_operand);
+//	}
 
 }
