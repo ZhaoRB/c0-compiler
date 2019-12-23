@@ -1,17 +1,15 @@
-int a;
-const int b = 10;
-
-int function(int a)
+int a = 1;
+const int b = 2;
+void function()
 {
-    int c = 100;
-    return c+a;
+    a = 2;
+    return;
 }
 
 int main()
 {
-    a = 101;
-    if (c >= 0) {
-        a = 102;
-    }
+    int a = 10;
+    int b = 20;
+    function();
     return 0;
 }

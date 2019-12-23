@@ -208,6 +208,10 @@ namespace miniplc0 {
                             return err;
                     }
                 }
+                else if (type == TokenType::VOID) {
+                    unreadToken();
+                    break;
+                }
                 else
                     break;
             }
@@ -478,10 +482,15 @@ namespace miniplc0 {
         // 检查类型啊
         int paraNum = 0;
         auto next = nextToken();
-        auto err = analyseExpression();
-        if (err.has_value())
-            return err;
-        paraNum++;
+        next = nextToken();
+        if (next.value().GetType() != TokenType::RIGHT_BRACKET) {
+            auto err = analyseExpression();
+            if (err.has_value())
+                return err;
+            paraNum++;
+        }
+        else
+            unreadToken();
         while (true) {
             next = nextToken();
             auto type = next.value().GetType();
@@ -489,7 +498,7 @@ namespace miniplc0 {
                 unreadToken();
                 break;
             }
-            err = analyseExpression();
+            auto err = analyseExpression();
             if (err.has_value())
                 return err;
             paraNum++;
@@ -899,6 +908,7 @@ namespace miniplc0 {
             return std::make_optional<CompilationError>(_current_pos,ErrNoBracket);
         next = nextToken();
         if (next.value().GetType() != TokenType::RIGHT_BRACKET) {
+            unreadToken();
             auto err = analysePrintableList();
             if (err.has_value())
                 return err;
@@ -925,8 +935,10 @@ namespace miniplc0 {
                 if (err.has_value())
                     return err;
             }
-            else
+            else{
+                unreadToken();
                 break;
+            }
         }
         return {};
     }
