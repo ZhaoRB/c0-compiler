@@ -137,7 +137,6 @@ namespace miniplc0 {
         // return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
         return {};
     }
-
     // 查函数表
     std::optional<CompilingFunction> Analyser::findFunction(std::optional<Token> identifier) {
         auto name = identifier.value().GetValueString();
@@ -148,6 +147,26 @@ namespace miniplc0 {
         }
         // 没找到 返回空
         return {};
+    }
+
+    // 遇到右大括号 删除此level的常量和变量
+    void Analyser::deleteCurrentLevelSymbol() {
+        int n = _constant_symbols.size();
+        if (n != 0) {
+            for (int i=n-1; i>=0; i--) {
+                if (_constant_symbols[i].getLevel() < _current_level)
+                    break;
+                _constant_symbols.pop_back();
+            }
+        }
+        n = _variable_symbols.size();
+        if (n != 0) {
+            for (int i=n-1; i>=0; i--) {
+                if (_variable_symbols[i].getLevel() < _current_level)
+                    break;
+                _variable_symbols.pop_back();
+            }
+        }
     }
 
 
@@ -302,14 +321,19 @@ namespace miniplc0 {
             if (isConstant) {
                 if (type != TokenType::EQUAL_SIGN)
                     return std::make_optional<CompilationError>(_current_pos,ErrConstantNeedValue);
+                auto err = analyseExpression();
+                if (err.has_value())
+                    return err;
             }
             else {
                 if (type != TokenType::EQUAL_SIGN)
                     unreadToken();
+                else {
+                    auto err = analyseExpression();
+                    if (err.has_value())
+                        return err;
+                }
             }
-            auto err = analyseExpression();
-            if (err.has_value())
-                return err;
         }
         // 存入符号表
         addToSymbolList(identifier);
@@ -515,7 +539,7 @@ namespace miniplc0 {
 
         next = nextToken();
         type = next.value().GetType();
-        if (!next.has_value() || type == TokenType::LEFT_BRACKET)
+        if (!next.has_value() || type != TokenType::LEFT_BRACKET)
             return std::make_optional<CompilationError>(_current_pos,ErrNoBracket);
         _current_level++; // 参数表的level要+1
 
@@ -524,7 +548,6 @@ namespace miniplc0 {
         type = next.value().GetType();
         // 没参数 直接加入函数表
         if (type == TokenType::RIGHT_BRACKET) {
-            _current_level--;
             unreadToken();
             auto functionName = identifier.value().GetValueString();
             CompilingFunction compilingFunction(functionName,0, functionType.value().GetValueString());
@@ -538,14 +561,17 @@ namespace miniplc0 {
         }
         next = nextToken();
         type = next.value().GetType();
-        if (!next.has_value() || type == TokenType::RIGHT_BRACKET)
+        if (!next.has_value() || type != TokenType::RIGHT_BRACKET)
             return std::make_optional<CompilationError>(_current_pos,ErrNoBracket);
         _current_level--;
 
         // 函数体
+        hasReturn = false;
         auto err = analyseCompoundStatement();
         if (err.has_value())
             return err;
+        if (!hasReturn)
+            return std::make_optional<CompilationError>(_current_pos,ErrNoReturnStatement);
 
         return {};
     }
@@ -654,12 +680,22 @@ namespace miniplc0 {
         type = next.value().GetType();
         if (!next.has_value() || type != TokenType::BIG_RIGHT_BRACKET)
             return std::make_optional<CompilationError>(_current_pos,ErrNoBigBracket);
+        // 删除这个level的常量和变量
+        deleteCurrentLevelSymbol();
         _current_level--;
         return {};
     }
     //    <statement-seq> ::={<statement>}
     std::optional<CompilationError> Analyser::analyseStatementSeq() {
         while (true) {
+            // 预读 判断是否结束了
+            auto next = nextToken();
+            auto type = next.value().GetType();
+            if (type == TokenType::BIG_RIGHT_BRACKET) {
+                unreadToken();
+                break;
+            }
+            unreadToken();
             auto err = analyseStatement();
             if (err.has_value())
                 return err;
@@ -680,6 +716,8 @@ namespace miniplc0 {
              type = next.value().GetType();
              if (!next.has_value() || type != TokenType::BIG_RIGHT_BRACKET)
                  return std::make_optional<CompilationError>(_current_pos,ErrNoBigBracket);
+             // 删除
+             deleteCurrentLevelSymbol();
              _current_level--;
          }
          else if (type == TokenType::IF) {
@@ -753,6 +791,7 @@ namespace miniplc0 {
             if (err.has_value())
                 return err;
         }
+        // 如果没有关系运算符的话 通过这个expression来判断 true or false
         return {};
     }
     //    <condition-statement> ::='if' '(' <condition> ')' <statement> ['else' <statement>]
@@ -807,6 +846,7 @@ namespace miniplc0 {
         if (!isVoid) {
             if (type == TokenType::SEMICOLON)
                 return std::make_optional<CompilationError>(_current_pos,ErrIncorrectReturnType);
+            unreadToken();
             auto err = analyseExpression();
             if (err.has_value())
                 return err;
@@ -814,6 +854,7 @@ namespace miniplc0 {
         }
         if (!next.has_value() || next.value().GetType() != TokenType::SEMICOLON)
             return std::make_optional<CompilationError>(_current_pos,ErrNoSemicolon);
+        hasReturn = true;
         return {};
     }
     //    <scan-statement>  ::= 'scan' '(' <identifier> ')' ';'

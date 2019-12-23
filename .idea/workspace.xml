@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="cc0" targetName="miniplc0_test" />
+      <config projectName="cc0" targetName="cc0" />
       <config projectName="cc0" targetName="fmt" />
       <config projectName="cc0" targetName="cc0_lib" />
-      <config projectName="cc0" targetName="cc0" />
+      <config projectName="cc0" targetName="miniplc0_test" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -18,17 +18,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyser/analyser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyser/analyser.h" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cc0.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cc0.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/input/yuyi1.c0" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/input/yuyi1.c0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/libcc0_lib.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/libcc0_lib.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/miniplc0_test.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/miniplc0_test.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/error/error.h" beforeDir="false" afterPath="$PROJECT_DIR$/error/error.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fmts.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/fmts.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tokenizer/tokenizer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tokenizer/tokenizer.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +58,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.advertisement.text.has.clang-format" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../miniplc0 3.0/miniplc0-compiler" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
@@ -78,7 +74,7 @@
     </option>
   </component>
   <component name="RunManager" selected="CMake Application.cc0">
-    <configuration name="cc0" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-l ./input/yuyi1.c0" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cc0" TARGET_NAME="cc0" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cc0" RUN_TARGET_NAME="cc0">
+    <configuration name="cc0" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-l ./input/yuyi2.c0" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cc0" TARGET_NAME="cc0" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cc0" RUN_TARGET_NAME="cc0">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -126,7 +122,8 @@
       <workItem from="1576717486110" duration="25956000" />
       <workItem from="1576837736236" duration="5543000" />
       <workItem from="1576901774122" duration="25639000" />
-      <workItem from="1576978447835" duration="39026000" />
+      <workItem from="1576978447835" duration="39063000" />
+      <workItem from="1577078403370" duration="8837000" />
     </task>
     <servers />
   </component>
@@ -155,11 +152,26 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>30</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>196</line>
-          <option name="timeStamp" value="19" />
+          <line>215</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>849</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="_current_level" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

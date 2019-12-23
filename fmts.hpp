@@ -112,6 +112,9 @@ namespace fmt {
             case miniplc0::ErrNoMainFunction:
                 name = "no main function in this program";
                 break;
+            case miniplc0::ErrNoReturnStatement:
+                name = "no return statement in this function";
+                break;
             }
             return format_to(ctx.out(), name);
         }

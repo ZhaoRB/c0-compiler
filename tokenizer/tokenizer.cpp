@@ -472,14 +472,14 @@ namespace miniplc0 {
                     current_state = DFAState::MORETHAN_AND_EQUAL_SIGN_STATE;
                 else {
                     unreadLast();
-                    return std::make_pair(std::make_optional<Token>(TokenType::MORE_THAN_SIGN,'<',pos,currentPos()),std::optional<CompilationError>());
+                    return std::make_pair(std::make_optional<Token>(TokenType::MORE_THAN_SIGN,'>',pos,currentPos()),std::optional<CompilationError>());
                 }
                 break;
             }
             // >=
             case MORETHAN_AND_EQUAL_SIGN_STATE: {
                 unreadLast();
-                return std::make_pair(std::make_optional<Token>(TokenType::MORE_OR_EQUAL_SIGN,"<=",pos,currentPos()),std::optional<CompilationError>());
+                return std::make_pair(std::make_optional<Token>(TokenType::MORE_OR_EQUAL_SIGN,">=",pos,currentPos()),std::optional<CompilationError>());
             }
             // 可能是 !=
             case MAYBE_NOTEQUAL_SIGN_STATE: {

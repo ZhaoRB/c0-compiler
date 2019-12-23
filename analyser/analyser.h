@@ -45,6 +45,7 @@ namespace miniplc0 {
         bool isVoid;
         bool isMain;
         bool hasMain;
+        bool hasReturn;
 
         // “目标代码生成”时使用
         // 这三个vector是存储最后要输出的信息，并不是程序运行时候所需要的数据结构
@@ -65,7 +66,7 @@ namespace miniplc0 {
 		    : _tokens(std::move(v)), _current_pos(0,0),
 		    _constant_symbols({}),_variable_symbols({}),
 		    isConstant(false),_current_level(0),isVoid(false),
-		    isMain(false),hasMain(false),
+		    isMain(false),hasMain(false),hasReturn(false),
             _instructions({}), _constants({}), _functions({}),
             _offset(0), _nextTokenIndex(0) {}
 		// 唯一接口
@@ -86,9 +87,9 @@ namespace miniplc0 {
         // 查找
         std::optional<CompilingFunction> findFunction(std::optional<Token> identifier);
         std::optional<Symbol> findIdentifier(std::optional<Token> identifier);
-        // std::optional<Symbol> findIdentifier(std::string name);
         std::optional<Symbol> findConstantIdentifier(std::optional<Token> identifier);
-        // std::optional<Symbol> findConstantIdentifier(const std::string& name);
+        // 删除
+        void deleteCurrentLevelSymbol();
 
         // 所有的递归子程序
         std::optional<CompilationError> analyseProgram();
