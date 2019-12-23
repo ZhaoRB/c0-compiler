@@ -15,33 +15,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="470fb422-70cd-455c-8577-d105a0705747" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/instruction/instruction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyser/analyser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyser/analyser.h" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/3rd_party/fmt/CMakeFiles/fmt.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/3rd_party/fmt/CMakeFiles/fmt.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects1.rsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/8" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/miniplc0_test.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/miniplc0_test.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cc0.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cc0.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/input/input.c0" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/input/input.c0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmts.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/fmts.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instruction/instruction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/instruction/instruction.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instruction/instruction.h" beforeDir="false" afterPath="$PROJECT_DIR$/instruction/instruction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table/compilingFunction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/table/compilingFunction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table/compilingFunction.h" beforeDir="false" afterPath="$PROJECT_DIR$/table/compilingFunction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table/function.h" beforeDir="false" afterPath="$PROJECT_DIR$/table/function.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table/symbol.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/table/symbol.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table/symbol.h" beforeDir="false" afterPath="$PROJECT_DIR$/table/symbol.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table/constant.h" beforeDir="false" afterPath="$PROJECT_DIR$/table/constant.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -140,7 +121,7 @@
       <workItem from="1576837736236" duration="5543000" />
       <workItem from="1576901774122" duration="25639000" />
       <workItem from="1576978447835" duration="39063000" />
-      <workItem from="1577078403370" duration="37003000" />
+      <workItem from="1577078403370" duration="38152000" />
     </task>
     <servers />
   </component>
@@ -170,22 +151,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>981</line>
+          <line>984</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>838</line>
+          <line>841</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>1031</line>
+          <line>1034</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>697</line>
+          <line>700</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -195,7 +176,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>911</line>
+          <line>914</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>

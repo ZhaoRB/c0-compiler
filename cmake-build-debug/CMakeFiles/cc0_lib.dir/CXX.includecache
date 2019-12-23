@@ -23,6 +23,8 @@ utility
 -
 vector
 -
+string
+-
 
 ../table/compilingFunction.h
 string

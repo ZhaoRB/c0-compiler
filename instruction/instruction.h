@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <utility>
 #include <vector>
+#include <string>
 
 namespace miniplc0 {
 

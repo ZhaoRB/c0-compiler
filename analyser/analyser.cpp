@@ -157,7 +157,7 @@ namespace miniplc0 {
         else {
             std::string _name = _constant_symbols[indexConstant].getName();
             int _level = _constant_symbols[indexConstant].getLevel();
-            return std::make_optional<Symbol>(_name,_level);
+            return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
         }
         // return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
         return {};
@@ -653,7 +653,6 @@ namespace miniplc0 {
         if (next.value().GetValueString() == "main")
             hasMain = true;
 
-
         // 查重
         // 查符号表
         auto identifier = next;  // 存下来 填表的时候用
@@ -664,6 +663,10 @@ namespace miniplc0 {
         auto resultFunc = findFunction(identifier);
         if (resultFunc.has_value())
             return std::make_optional<CompilationError>(_current_pos,ErrUsedIdentifierName);
+
+        // /将函数名添加到运行时的常量表
+        Constant constant('s',identifier.value().GetValueString());
+        _constants.push_back(constant);
 
         next = nextToken();
         type = next.value().GetType();

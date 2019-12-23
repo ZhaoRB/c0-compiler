@@ -23,10 +23,5 @@ namespace miniplc0 {
 
     };
 
-//    Constant::Constant(char _type, std::string _value){
-//        type = _type;
-//        value = std::move(_value);
-//    }
-    // std::move 节省空间 ？
 }
 #endif //CC0_CONSTANT_H

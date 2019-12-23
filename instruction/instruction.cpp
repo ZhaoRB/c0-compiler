@@ -11,7 +11,7 @@ namespace miniplc0 {
         return opr;
     }
 
-    std::vector<std::string> Instruction::getBinaryOpr() {
+    std::string Instruction::getBinaryOpr() {
         return binary_opr;
     }
 

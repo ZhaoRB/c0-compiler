@@ -32,9 +32,9 @@ void Analyse(std::istream& input, std::ostream& output){
 		fmt::print(stderr, "Syntactic analysis error: {}\n", p.second.value());
 		exit(2);
 	}
-//	auto v = p.first;
-//	for (auto& it : v)
-//		output << fmt::format("{}\n", it);
+	auto v = p.first;
+	for (auto& it : v)
+		output << fmt::format("{}\n", it);
 	// 测试语义分析
 	std::cout << "OK!" << std::endl;
 }
