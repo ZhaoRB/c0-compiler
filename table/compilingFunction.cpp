@@ -18,4 +18,8 @@ namespace miniplc0 {
     std::string CompilingFunction::getType() {
         return returnType;
     }
+
+    int CompilingFunction::getIndex() {
+        return index;
+    }
 }

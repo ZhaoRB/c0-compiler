@@ -1,4 +1,5 @@
 #include "analyser.h"
+#include "instruction/instruction.h"
 
 #include <climits>
 #include <sstream>
@@ -47,13 +48,37 @@ namespace miniplc0 {
                 t == TokenType::LESS_THAN_SIGN|| t == TokenType::LESS_OR_EQUAL_SIGN ||
                 t == TokenType::MORE_THAN_SIGN ||t == TokenType::MORE_OR_EQUAL_SIGN;
     }
+    std::string Analyser::changeToBinary(int operand, int length) {
+        // 都是正数 转换成16进制就行
+        char ch;
+        std::string s;
+        while (operand > 0) {
+            int a = operand % 16;
+            if (a < 10) {
+                ch = '0'+a;
+            }
+            else {
+                ch = 'a'+a-10;
+            }
+            s += ch;
+            operand /= 16;
+        }
+        int n = s.size();
+        while(n < length) {
+            s += '0';
+            n++;
+        }
+        reverse(s.begin(),s.end());
+        return s;
+    }
 
     // 添加到符号表
     // 常量表和变量表
     void Analyser::addToSymbolList(std::optional<Token> identifier) {
         std::string _name = identifier.value().GetValueString();
         int _level = _current_level;
-        miniplc0::Symbol symbol(_name,_level);
+        miniplc0::Symbol symbol(_name,_level,_offsets);
+        _offsets++;
         if (isConstant)
             _constant_symbols.push_back(symbol);
         else
@@ -61,7 +86,7 @@ namespace miniplc0 {
     }
     // 运行时的函数表
     void Analyser::addToCompilingFunctions(std::optional<Token> identifier, int paraNum, std::string type) {
-        CompilingFunction compilingFunction(identifier.value().GetValueString(),paraNum, std::move(type));
+        CompilingFunction compilingFunction(identifier.value().GetValueString(),paraNum, std::move(type), functionIndex);
         _compilingFunctions.push_back(compilingFunction);
     }
 
@@ -271,12 +296,6 @@ namespace miniplc0 {
             if (next.value().GetType() != TokenType::SEMICOLON)
                 return std::make_optional<CompilationError>(_current_pos,ErrorCode::ErrNoSemicolon);
         }
-
-        // 添加到符号表
-        // 等待实现
-        // constant表可能会添加元素
-        // 生成加载全局变量的指令
-
         return {};
 	}
 
@@ -319,6 +338,18 @@ namespace miniplc0 {
             if (symbol.has_value() && symbol.value().getLevel() == _current_level)
                 return std::make_optional<CompilationError>(_current_pos,ErrHasDeclared);
 
+            // 不用分配空间吧
+            // 为identifier分配空间
+            // 变量和常量声明的时候 先用snew分配空间；因为都是整数，所以分配一个slot
+            /*
+            std::vector<int> operand;
+            operand.push_back(1);
+            std::vector<std::string> binary_operand;
+            binary_operand.emplace_back("00 00 00 01");
+            Instruction instruction(Operation::SNEW,"0c",operand,binary_operand);
+            _instructions.push_back(instruction);
+            */
+
             next = nextToken();
             type = next.value().GetType();
             // 如果是常量 必须要初始化
@@ -328,14 +359,18 @@ namespace miniplc0 {
                 auto err = analyseExpression();
                 if (err.has_value())
                     return err;
+                // 在这里初始化赋值 需要吗？
             }
             else {
-                if (type != TokenType::EQUAL_SIGN)
+                // 未初始化不用管 也不用给默认值
+                if (type != TokenType::EQUAL_SIGN) {
                     unreadToken();
+                }
                 else {
                     auto err = analyseExpression();
                     if (err.has_value())
                         return err;
+                    // 初始化赋值 不需要吧
                 }
             }
         }
@@ -359,14 +394,25 @@ namespace miniplc0 {
                 if (err.has_value())
                     return err;
                 // 生成指令
+                // 加减
+                if (type == TokenType::PLUS_SIGN) {
+                    std::vector<int> operand;
+                    std::vector<std::string> binary_operand;
+                    Instruction instruction(Operation::IADD,"30",operand,binary_operand);
+                    _instructions.push_back(instruction);
+                }
+                else {
+                    std::vector<int> operand;
+                    std::vector<std::string> binary_operand;
+                    Instruction instruction(Operation::ISUB,"34",operand,binary_operand);
+                    _instructions.push_back(instruction);
+                }
             }
             else {
                 unreadToken();
                 break;
             }
         }
-        // 生成相应操作？
-
         return {};
     }
 
@@ -383,6 +429,19 @@ namespace miniplc0 {
                 if (err.has_value())
                     return err;
                 // 生成指令
+                // 乘除
+                if (type == TokenType::MULTIPLICATION_SIGN) {
+                    std::vector<int> operand;
+                    std::vector<std::string> binary_operand;
+                    Instruction instruction(Operation::IMUL,"38",operand,binary_operand);
+                    _instructions.push_back(instruction);
+                }
+                else {
+                    std::vector<int> operand;
+                    std::vector<std::string> binary_operand;
+                    Instruction instruction(Operation::IDIV,"3c",operand,binary_operand);
+                    _instructions.push_back(instruction);
+                }
             }
             else {
                 unreadToken();
@@ -399,20 +458,26 @@ namespace miniplc0 {
 	    // 预读 处理前面可能有的正负号
         auto next = nextToken();
         auto type = next.value().GetType();
-        if (type == TokenType::PLUS_SIGN) {
-            int a = 1; //zhanwei
+        bool isNegative = false;
+        if (type != TokenType::PLUS_SIGN && type != TokenType::MINUS_SIGN) {
+            unreadToken();
         }
         else if (type == TokenType::MINUS_SIGN) {
-            int a = 1;  // zhanwei
+            isNegative = true;
+//            // 压进来一个 -1
+//            std::vector<int> operand;
+//            std::vector<std::string> binary_operand;
+//            operand.push_back(-1);
+//            binary_operand.emplace_back("ff ff ff ff");
+//            Instruction instruction(Operation::IPUSH,"02",operand,binary_operand);
+//            _instructions.push_back(instruction);
         }
-        else
-            unreadToken();
+
 
 	    // primary-expression 部分
 	    next = nextToken();
 	    type = next.value().GetType();
 	    if (type == TokenType::IDENTIFIER) {
-	        // 生成指令
 	        next = nextToken();
 	        if (next.value().GetType() == TokenType::LEFT_BRACKET) {
 	            unreadToken();
@@ -433,11 +498,42 @@ namespace miniplc0 {
                 else {
                     // 不判断是否初始化了
                     // 从栈中取出identifier到栈顶
+                    // loada 和 iload
+                    int identifier_level = result.value().getLevel();
+                    int level_diff = _current_level - identifier_level;
+                    int stackOffset = result.value().getOffset();
+                    std::string s1 = changeToBinary(level_diff,4);
+                    std::string s2 = changeToBinary(stackOffset,8);
+                    std::vector<int> operand;
+                    std::vector<std::string> binary_operand;
+                    operand.push_back(level_diff);
+                    operand.push_back(stackOffset);
+                    binary_operand.push_back(s1);
+                    binary_operand.push_back(s2);
+                    Instruction instruction(Operation::LOADA,"0a",operand,binary_operand);
+                    _instructions.push_back(instruction);
+                    // iload
+                    std::vector<int> operand2;
+                    std::vector<std::string> binary_operand2;
+                    Instruction instruction2(Operation::ILOAD,"10",operand2,binary_operand2);
+                    _instructions.push_back(instruction2);
                 }
 	        }
 	    }
 	    else if (type == TokenType::DECIMAL_UNSIGNED_INTEGER || type == TokenType::HEXADECIMAL_UNSIGNED_INTEGER) {
 	        // 直接压栈
+	        std::string s = next.value().GetValueString();
+	        std::stringstream ss;
+	        ss << s;
+	        int value;
+	        ss >> value;
+	        std::string binary_value = changeToBinary(value,8);
+            std::vector<int> operand;
+            std::vector<std::string> binary_operand;
+            operand.push_back(value);
+            binary_operand.push_back(binary_value);
+            Instruction instruction(Operation::IPUSH,"02",operand,binary_operand);
+            _instructions.push_back(instruction);
 	    }
 	    else if (type == TokenType::LEFT_BRACKET) {
 	        auto err = analyseExpression();
@@ -450,7 +546,12 @@ namespace miniplc0 {
 	    else
 	        return std::make_optional<CompilationError>(_current_pos,ErrIncompleteExpression);
 
-	    // 如果取负数的话 还要进行相关操作
+	    // 如果取负数的话 还要和之前压入的-1相乘
+	    if (isNegative) {
+            std::vector<int> operand;
+            std::vector<std::string> binary_operand;
+            Instruction instruction(Operation::INEG,"40",operand,binary_operand);
+	    }
 
         return {};
     }
@@ -513,6 +614,24 @@ namespace miniplc0 {
             return std::make_optional<CompilationError>(_current_pos,ErrNoBracket);
 
         // 生成指令
+        // call指令
+//        int index;
+//        int n = _compilingFunctions.size();
+//        std::string name = oneFunction.value().getName();
+//        for (int i=0; i<n; i++) {
+//            if (name == _compilingFunctions[i].getName()) {
+//                index = i;
+//                break;
+//            }
+//        }
+        std::vector<int> operand;
+        std::vector<std::string> binary_operand;
+        operand.push_back(oneFunction.value().getIndex());
+        std::string s = changeToBinary(oneFunction.value().getIndex(),4);
+        binary_operand.push_back(s);
+        Instruction instruction(Operation::CALL,"80",operand,binary_operand);
+        _instructions.push_back(instruction);
+
 	    return {};
 	}
 
@@ -559,8 +678,9 @@ namespace miniplc0 {
         if (type == TokenType::RIGHT_BRACKET) {
             unreadToken();
             auto functionName = identifier.value().GetValueString();
-            CompilingFunction compilingFunction(functionName,0, functionType.value().GetValueString());
+            CompilingFunction compilingFunction(functionName,0, functionType.value().GetValueString(),functionIndex);
             _compilingFunctions.push_back(compilingFunction);
+            functionIndex++;
         }
         // 有参数 在paraList里面添加到符号表
         else {
@@ -576,6 +696,7 @@ namespace miniplc0 {
 
         // 函数体
         hasReturn = false;
+        _offsets = 0;
         auto err = analyseCompoundStatement();
         if (err.has_value())
             return err;
@@ -611,8 +732,9 @@ namespace miniplc0 {
                 break;
         }
         // 添加到函数表
-        CompilingFunction compilingFunction(identifier.value().GetValueString(),paraNum,functionType.value().GetValueString());
+        CompilingFunction compilingFunction(identifier.value().GetValueString(),paraNum,functionType.value().GetValueString(),functionIndex);
         _compilingFunctions.push_back(compilingFunction);
+        functionIndex++;
 
         return {};
     }
@@ -787,6 +909,7 @@ namespace miniplc0 {
              std::make_optional<CompilationError>(_current_pos,ErrInvalidStatement);
         return {};
     }
+
     //    <condition> ::=<expression>[<relational-operator><expression>]
     std::optional<CompilationError> Analyser::analyseCondition() {
         auto err = analyseExpression();

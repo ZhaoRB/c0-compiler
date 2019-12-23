@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "D:/1 project/Clion project/c0/c0-compiler/instruction/instruction.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/cc0.dir/instruction/instruction.cpp.obj"
   "D:/1 project/Clion project/c0/c0-compiler/main.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/cc0.dir/main.cpp.obj"
   "D:/1 project/Clion project/c0/c0-compiler/table/compilingFunction.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/cc0.dir/table/compilingFunction.cpp.obj"
   "D:/1 project/Clion project/c0/c0-compiler/table/symbol.cpp" "D:/1 project/Clion project/c0/c0-compiler/cmake-build-debug/CMakeFiles/cc0.dir/table/symbol.cpp.obj"

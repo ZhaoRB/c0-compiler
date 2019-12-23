@@ -245,6 +245,33 @@ analyser/analyser.cpp.s:
 	$(MAKE) -f CMakeFiles\cc0_lib.dir\build.make CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.s
 .PHONY : analyser/analyser.cpp.s
 
+instruction/instruction.obj: instruction/instruction.cpp.obj
+
+.PHONY : instruction/instruction.obj
+
+# target to build an object file
+instruction/instruction.cpp.obj:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/instruction/instruction.cpp.obj
+.PHONY : instruction/instruction.cpp.obj
+
+instruction/instruction.i: instruction/instruction.cpp.i
+
+.PHONY : instruction/instruction.i
+
+# target to preprocess a source file
+instruction/instruction.cpp.i:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/instruction/instruction.cpp.i
+.PHONY : instruction/instruction.cpp.i
+
+instruction/instruction.s: instruction/instruction.cpp.s
+
+.PHONY : instruction/instruction.s
+
+# target to generate assembly for a file
+instruction/instruction.cpp.s:
+	$(MAKE) -f CMakeFiles\cc0.dir\build.make CMakeFiles/cc0.dir/instruction/instruction.cpp.s
+.PHONY : instruction/instruction.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -454,6 +481,9 @@ help:
 	@echo ... analyser/analyser.obj
 	@echo ... analyser/analyser.i
 	@echo ... analyser/analyser.s
+	@echo ... instruction/instruction.obj
+	@echo ... instruction/instruction.i
+	@echo ... instruction/instruction.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

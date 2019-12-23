@@ -17,21 +17,16 @@ namespace miniplc0 {
     private:
         std::string name;
         int level;
+        int offset;
     public:
-        Symbol(std::string _name, int _level)
-            : name(std::move(_name)), level(_level) {}
+        Symbol(std::string _name, int _level, int _offset)
+            : name(std::move(_name)), level(_level), offset(_offset) {}
 
     public:
         std::string getName();
         int getLevel();
+        int getOffset();
     };
-
-//    Symbol::Symbol(std::string _name, int _level) {
-//        name = std::move(_name);
-//        level = _level;
-//    }
-
-
 
 }
 

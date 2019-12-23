@@ -46,6 +46,8 @@ namespace miniplc0 {
         bool isMain;
         bool hasMain;
         bool hasReturn;
+        int _offsets; // 每当声明一个新函数的时候让offsets=0
+        int functionIndex;
 
         // “目标代码生成”时使用
         // 这三个vector是存储最后要输出的信息，并不是程序运行时候所需要的数据结构
@@ -67,6 +69,7 @@ namespace miniplc0 {
 		    _constant_symbols({}),_variable_symbols({}),
 		    isConstant(false),_current_level(0),isVoid(false),
 		    isMain(false),hasMain(false),hasReturn(false),
+		    _offsets(0), functionIndex(0),
             _instructions({}), _constants({}), _functions({}),
             _offset(0), _nextTokenIndex(0) {}
 		// 唯一接口
@@ -90,6 +93,9 @@ namespace miniplc0 {
         std::optional<Symbol> findConstantIdentifier(std::optional<Token> identifier);
         // 删除
         void deleteCurrentLevelSymbol();
+        // 十进制数转成二进制补码 输出成相应长度的十六进制
+        std::string changeToBinary(int operand, int length);
+
 
         // 所有的递归子程序
         std::optional<CompilationError> analyseProgram();

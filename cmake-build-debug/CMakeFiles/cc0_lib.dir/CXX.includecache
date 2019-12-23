@@ -59,6 +59,8 @@ cstdint
 D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.cpp
 analyser.h
 D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
+instruction/instruction.h
+D:/1 project/Clion project/c0/c0-compiler/analyser/instruction/instruction.h
 climits
 -
 sstream

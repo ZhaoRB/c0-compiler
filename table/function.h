@@ -19,11 +19,6 @@ namespace miniplc0 {
             : name_index(_name_size), paras_size(_paras_size), level(_level) {}
     };
 
-//    Function::Function(int _name_size, int _paras_size, int _level) {
-//        name_index = _name_size;
-//        paras_size = _paras_size;
-//        level = _level;
-//    }
 }
 
 

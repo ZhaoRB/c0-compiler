@@ -92,9 +92,16 @@ namespace miniplc0 {
 	    Operation opr;
 	    std::string binary_opr;
 	    std::vector<int> operand;
+	    std::vector<std::string> binary_operand;
     public:
-	    Instruction(Operation _opr, std::string  _binary_opr, std::vector<int> _operand)
-	        :opr(_opr), binary_opr(std::move(_binary_opr)), operand(std::move(_operand)) {}
+	    Instruction(Operation _opr, std::string  _binary_opr, std::vector<int> _operand, std::vector<std::string> _binary_operand)
+	        :opr(_opr), binary_opr(std::move(_binary_opr)), operand(std::move(_operand)), binary_operand(std::move(_binary_operand)) {}
+
+    public:
+	    Operation getOpr();
+	    std::string getBinaryOpr();
+	    std::vector<int> getOperand();
+	    std::vector<std::string> getBinaryOperand();
 
 	};
 

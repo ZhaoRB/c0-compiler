@@ -13,4 +13,8 @@ namespace miniplc0 {
         return level;
     }
 
+    int Symbol::getOffset() {
+        return offset;
+    }
+
 }
