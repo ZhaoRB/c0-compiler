@@ -4,6 +4,8 @@
 #include <utility>
 #include <vector>
 #include <string>
+// #include <rpcndr.h>
+
 
 namespace miniplc0 {
 
@@ -90,19 +92,26 @@ namespace miniplc0 {
 	class Instruction final {
 
     private:
+        using byte = unsigned char;
+    private:
 	    Operation opr;
-	    std::string binary_opr;
+	    // byte binary_opr[2];
+	    std::vector<byte> binary_opr;
 	    std::vector<int> operand;
-	    std::vector<std::string> binary_operand;
+	    std::vector<std::vector<byte>> binary_operand;
+        int offset_num;
     public:
-	    Instruction(Operation _opr, std::string  _binary_opr, std::vector<int> _operand, std::vector<std::string> _binary_operand)
-	        :opr(_opr), binary_opr(std::move(_binary_opr)), operand(std::move(_operand)), binary_operand(std::move(_binary_operand)) {}
+	    Instruction(Operation _opr, std::vector<byte> _binary_opr, std::vector<int> _operand, std::vector<std::vector<byte>> _binary_operand, int _offset_num)
+	        :opr(_opr), binary_opr(std::move(_binary_opr)), operand(std::move(_operand)), binary_operand(std::move(_binary_operand)), offset_num(_offset_num) {}
 
     public:
 	    Operation getOpr();
-	    std::string getBinaryOpr();
+        std::vector<byte> getBinaryOpr();
 	    std::vector<int> getOperand();
-	    std::vector<std::string> getBinaryOperand();
+        std::vector<std::vector<byte>> getBinaryOperand();
+	    int getOffsetNum();
+        void addOperand(int offset); // 添加操作数 用于回填
+        void addBinaryOperand(std::vector<byte> binary_offset);
 
 	};
 

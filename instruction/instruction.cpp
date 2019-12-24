@@ -4,14 +4,17 @@
 #include "instruction.h"
 
 #include <string>
+// #include <rpcndr.h>
 
 namespace miniplc0 {
+
+    using byte = unsigned char;
 
     Operation Instruction::getOpr() {
         return opr;
     }
 
-    std::string Instruction::getBinaryOpr() {
+    std::vector<byte> Instruction::getBinaryOpr() {
         return binary_opr;
     }
 
@@ -19,8 +22,20 @@ namespace miniplc0 {
         return operand;
     }
 
-    std::vector<std::string> Instruction::getBinaryOperand() {
+    std::vector<std::vector<byte>> Instruction::getBinaryOperand() {
         return binary_operand;
+    }
+
+    int Instruction::getOffsetNum() {
+        return offset_num;
+    }
+
+    void Instruction::addOperand(int offset) {
+        operand.push_back(offset);
+    }
+
+    void Instruction::addBinaryOperand(std::vector<byte> binary_offset) {
+        binary_operand.push_back(binary_offset);
     }
 
 }

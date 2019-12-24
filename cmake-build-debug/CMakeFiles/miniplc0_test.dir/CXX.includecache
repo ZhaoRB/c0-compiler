@@ -568,26 +568,6 @@ algorithm
 cassert
 -
 
-../3rd_party/fmt/include/fmt/core.h
-cassert
--
-cstdio
--
-cstring
--
-iterator
--
-string
--
-type_traits
--
-string_view
--
-experimental/string_view
--
-fmt/core.h
--
-
 ../analyser/analyser.h
 error/error.h
 ../analyser/error/error.h
@@ -711,16 +691,4 @@ tokenizer/tokenizer.h
 D:/1 project/Clion project/c0/c0-compiler/tests/tokenizer/tokenizer.h
 analyser/analyser.h
 D:/1 project/Clion project/c0/c0-compiler/tests/analyser/analyser.h
-
-D:/1 project/Clion project/c0/c0-compiler/tests/test_tokenizer.cpp
-catch2/catch.hpp
-D:/1 project/Clion project/c0/c0-compiler/tests/catch2/catch.hpp
-tokenizer/tokenizer.h
-D:/1 project/Clion project/c0/c0-compiler/tests/tokenizer/tokenizer.h
-fmt/core.h
-D:/1 project/Clion project/c0/c0-compiler/tests/fmt/core.h
-sstream
--
-vector
--
 

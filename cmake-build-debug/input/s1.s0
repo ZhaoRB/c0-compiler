@@ -1,0 +1,11 @@
+.constants:
+0  s  main
+.start:
+0    ipush  2  
+1    ipush  1  
+.functions:
+0  0  0  1
+.F0:
+0    loada  1  1  
+1    iload  
+2    iret  

@@ -7,7 +7,6 @@ CMakeFiles/cc0.dir/instruction/instruction.cpp.obj: ../instruction/instruction.h
 CMakeFiles/cc0.dir/main.cpp.obj: ../3rd_party/argparse/include/argparse.hpp
 CMakeFiles/cc0.dir/main.cpp.obj: ../3rd_party/fmt/include/fmt/core.h
 CMakeFiles/cc0.dir/main.cpp.obj: ../error/error.h
-CMakeFiles/cc0.dir/main.cpp.obj: ../instruction/instruction.h
 CMakeFiles/cc0.dir/main.cpp.obj: ../table/compilingFunction.h
 CMakeFiles/cc0.dir/main.cpp.obj: ../table/constant.h
 CMakeFiles/cc0.dir/main.cpp.obj: ../table/function.h
@@ -16,6 +15,7 @@ CMakeFiles/cc0.dir/main.cpp.obj: ../tokenizer/token.h
 CMakeFiles/cc0.dir/main.cpp.obj: ../tokenizer/utils.hpp
 CMakeFiles/cc0.dir/main.cpp.obj: ../analyser/analyser.h
 CMakeFiles/cc0.dir/main.cpp.obj: ../fmts.hpp
+CMakeFiles/cc0.dir/main.cpp.obj: ../instruction/instruction.h
 CMakeFiles/cc0.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/cc0.dir/main.cpp.obj: ../tokenizer/tokenizer.h
 

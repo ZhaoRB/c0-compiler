@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="cc0" targetName="miniplc0_test" />
+      <config projectName="cc0" targetName="cc0" />
       <config projectName="cc0" targetName="fmt" />
       <config projectName="cc0" targetName="cc0_lib" />
-      <config projectName="cc0" targetName="cc0" />
+      <config projectName="cc0" targetName="miniplc0_test" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -15,10 +15,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="470fb422-70cd-455c-8577-d105a0705747" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyser/analyser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyser/analyser.h" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cc0.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cc0.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/input/yuyi.c0" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/input/yuyi.c0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/libcc0_lib.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/libcc0_lib.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/miniplc0_test.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/miniplc0_test.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instruction/instruction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/instruction/instruction.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instruction/instruction.h" beforeDir="false" afterPath="$PROJECT_DIR$/instruction/instruction.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -56,7 +61,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.advertisement.text.has.clang-format" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../miniplc0 3.0/miniplc0-compiler" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunDashboard">
@@ -72,7 +77,7 @@
     </option>
   </component>
   <component name="RunManager" selected="CMake Application.cc0">
-    <configuration name="cc0" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-l ./input/yuyi.c0" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cc0" TARGET_NAME="cc0" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cc0" RUN_TARGET_NAME="cc0">
+    <configuration name="cc0" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-s ./input/yuyi.c0" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cc0" TARGET_NAME="cc0" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cc0" RUN_TARGET_NAME="cc0">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -121,7 +126,8 @@
       <workItem from="1576837736236" duration="5543000" />
       <workItem from="1576901774122" duration="25639000" />
       <workItem from="1576978447835" duration="39063000" />
-      <workItem from="1577078403370" duration="38152000" />
+      <workItem from="1577078403370" duration="38464000" />
+      <workItem from="1577149985455" duration="35233000" />
     </task>
     <servers />
   </component>
@@ -146,44 +152,63 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>244</line>
+          <line>240</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>984</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>841</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>1034</line>
+          <line>1219</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>700</line>
+          <line>725</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>583</line>
+          <line>604</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>914</line>
+          <line>939</line>
           <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>1087</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>199</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>834</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>253</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>145</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="_current_level" language="ObjectiveC" />
+        <watch expression="_instructions" language="ObjectiveC" />
+        <watch expression="_constant_symbols" language="ObjectiveC" />
+        <watch expression="_variable_symbols" language="ObjectiveC" />
+        <watch expression="_constants" language="ObjectiveC" />
+        <watch expression="_compilingFunctions" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>

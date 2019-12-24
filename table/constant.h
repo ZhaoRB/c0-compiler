@@ -14,7 +14,7 @@ namespace miniplc0 {
 
     class Constant {
 
-    private:
+    public:
         char type;
         std::string value;
     public:

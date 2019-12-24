@@ -68,16 +68,6 @@ utility
 iostream
 -
 
-../instruction/instruction.h
-cstdint
--
-utility
--
-vector
--
-string
--
-
 ../table/compilingFunction.h
 string
 -
@@ -158,12 +148,6 @@ D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.h
 analyser/analyser.h
 D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
 
-D:/1 project/Clion project/c0/c0-compiler/instruction/instruction.cpp
-instruction.h
-D:/1 project/Clion project/c0/c0-compiler/instruction/instruction.h
-string
--
-
 D:/1 project/Clion project/c0/c0-compiler/instruction/instruction.h
 cstdint
 -
@@ -183,35 +167,13 @@ tokenizer/tokenizer.h
 D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.h
 analyser/analyser.h
 D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
+instruction/instruction.h
+D:/1 project/Clion project/c0/c0-compiler/instruction/instruction.h
 fmts.hpp
 D:/1 project/Clion project/c0/c0-compiler/fmts.hpp
 iostream
 -
 fstream
--
-
-D:/1 project/Clion project/c0/c0-compiler/table/compilingFunction.cpp
-compilingFunction.h
-D:/1 project/Clion project/c0/c0-compiler/table/compilingFunction.h
-string
--
-
-D:/1 project/Clion project/c0/c0-compiler/table/compilingFunction.h
-string
--
-utility
--
-vector
--
-
-D:/1 project/Clion project/c0/c0-compiler/table/symbol.cpp
-symbol.h
-D:/1 project/Clion project/c0/c0-compiler/table/symbol.h
-
-D:/1 project/Clion project/c0/c0-compiler/table/symbol.h
-string
--
-utility
 -
 
 D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.h
