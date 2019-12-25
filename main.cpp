@@ -294,6 +294,11 @@ void translateToBinaryFile(std::istream& input, std::ostream& output) {
 
 }
 
+//void assembleToBinary(std::istream& input, std::ostream& output) {
+//    translateToBinaryFile(input,output);
+//
+//}
+
 int main(int argc, char** argv) {
 	argparse::ArgumentParser program("cc0");
     program.add_argument("input")

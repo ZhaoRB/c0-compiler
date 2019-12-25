@@ -158,6 +158,31 @@ namespace miniplc0 {
         // return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
         return {};
     }
+    std::optional<Symbol> Analyser::findVariableIdentifier(std::optional<Token> identifier) {
+        auto name = identifier.value().GetValueString();
+        int indexConstant = -1;
+        int n = _variable_symbols.size();
+        if (n == 0)
+            return {};
+        else {
+            for (int i=n-1; i>=0; i--) {
+                std::string _name = _variable_symbols[i].getName();
+                if (name == _name) {
+                    indexConstant = i;
+                    break;
+                }
+            }
+        }
+        if (indexConstant == -1)
+            return {};
+        else {
+            std::string _name = _variable_symbols[indexConstant].getName();
+            int _level = _variable_symbols[indexConstant].getLevel();
+            return std::make_optional<Symbol>(_variable_symbols[indexConstant]);
+        }
+        // return std::make_optional<Symbol>(_constant_symbols[indexConstant]);
+        return {};
+    }
     // 查函数表
     std::optional<CompilingFunction> Analyser::findFunction(std::optional<Token> identifier) {
         auto name = identifier.value().GetValueString();
@@ -334,18 +359,6 @@ namespace miniplc0 {
             if (symbol.has_value() && symbol.value().getLevel() == _current_level)
                 return std::make_optional<CompilationError>(_current_pos,ErrHasDeclared);
 
-            // 不用分配空间吧
-            // 为identifier分配空间
-            // 变量和常量声明的时候 先用snew分配空间；因为都是整数，所以分配一个slot
-            /*
-            std::vector<int> operand;
-            operand.push_back(1);
-            std::vector<std::string> binary_operand;
-            binary_operand.emplace_back("00 00 00 01");
-            Instruction instruction(Operation::SNEW,"0c",operand,binary_operand);
-            _instructions.push_back(instruction);
-            */
-
             next = nextToken();
             type = next.value().GetType();
             // 如果是常量 必须要初始化
@@ -359,8 +372,20 @@ namespace miniplc0 {
             }
             else {
                 // 未初始化不用管 也不用给默认值
+                // 为初始化需要给分配空间
                 if (type != TokenType::EQUAL_SIGN) {
                     unreadToken();
+                    // 分配空间
+                    std::vector<int> operand;
+                    std::vector<std::vector<byte>> binary_operand;
+                    std::vector<byte> binary_opr;
+                    binary_opr.push_back(0);
+                    binary_opr.push_back(12);
+                    operand.push_back(1);
+                    std::vector<byte> bytes = changeToBinary(1,4);
+                    binary_operand.push_back(bytes);
+                    Instruction instruction(Operation::SNEW,binary_opr,operand,binary_operand,opr_offset++);
+                    _instructions.push_back(instruction);
                 }
                 else {
                     auto err = analyseExpression();
@@ -508,7 +533,7 @@ namespace miniplc0 {
                     // 从栈中取出identifier到栈顶
                     // loada 和 iload
                     int identifier_level = result.value().getLevel();
-                    int level_diff = _current_level - identifier_level;
+                    int level_diff = 1 - identifier_level;
                     int stackOffset = result.value().getOffset();
                     std::vector<int> operand;
                     std::vector<std::vector<byte>> binary_operand;
@@ -606,6 +631,7 @@ namespace miniplc0 {
         auto next = nextToken();
         next = nextToken();
         if (next.value().GetType() != TokenType::RIGHT_BRACKET) {
+            unreadToken();
             auto err = analyseExpression();
             if (err.has_value())
                 return err;
@@ -664,6 +690,7 @@ namespace miniplc0 {
     //    <parameter-clause> ::='(' [<parameter-declaration-list>] ')'
     std::optional<CompilationError> Analyser::analyseFunctionDeclaration() {
         opr_offset = 0;
+        _offsets = 0;
         auto next = nextToken();
         auto type = next.value().GetType();
         if (type != TokenType::INT && type != TokenType::VOID)
@@ -974,20 +1001,20 @@ namespace miniplc0 {
                     opr = Operation::JE;
                     break;
                 case TokenType::LESS_THAN_SIGN :
-                    _binary_opr.push_back(3);
-                    opr = Operation::JL;
+                    _binary_opr.push_back(4);
+                    opr = Operation::JGE;
                     break;
-                case TokenType::MORE_THAN_SIGN :
+                case TokenType::LESS_OR_EQUAL_SIGN :
                     _binary_opr.push_back(5);
                     opr = Operation::JG;
                     break;
-                case TokenType::LESS_OR_EQUAL_SIGN :
+                case TokenType::MORE_THAN_SIGN :
                     _binary_opr.push_back(6);
                     opr = Operation::JLE;
                     break;
                 case TokenType::MORE_OR_EQUAL_SIGN :
-                    _binary_opr.push_back(4);
-                    opr = Operation::JGE;
+                    _binary_opr.push_back(3);
+                    opr = Operation::JL;
                     break;
                 default:
                     opr = Operation::JMP;
@@ -1034,6 +1061,7 @@ namespace miniplc0 {
         if (err.has_value())
             return err;
 
+        // 回填
         // else 或者其他指令
         // 将当前的偏移 +1 回填到跳转指令的offset
         int n = _instructions.size();
@@ -1043,8 +1071,16 @@ namespace miniplc0 {
                 || tmp.getOpr() == Operation::JLE || tmp.getOpr() == Operation::JGE || tmp.getOpr() == Operation::JG)
             {
                 if (tmp.getOperand().size() == 0) {
-                    _instructions[i].addOperand(opr_offset);
-                    _instructions[i].addBinaryOperand(changeToBinary(opr_offset+1,2));
+                    next = nextToken();
+                    if (next.value().GetType() == TokenType::ELSE) {
+                        _instructions[i].addOperand(opr_offset+1);
+                        _instructions[i].addBinaryOperand(changeToBinary(opr_offset+1,2));
+                    }
+                    else {
+                        _instructions[i].addOperand(opr_offset);
+                        _instructions[i].addBinaryOperand(changeToBinary(opr_offset,2));
+                    }
+                    unreadToken();
                     break;
                 }
             }
@@ -1052,9 +1088,35 @@ namespace miniplc0 {
 
         next = nextToken();
         if (next.value().GetType() == TokenType::ELSE) {
+            // 如果有else的话 生成跳转指令 跳转到 else 的statement之后的一句
+            // 等待回填
+            std::vector<int> operand;
+            std::vector<std::vector<byte>> binary_operand;
+            std::vector<byte> binary_opr;
+            binary_opr.push_back(7);
+            binary_opr.push_back(0);
+            Instruction instruction(Operation::JMP,binary_opr,operand,binary_operand ,opr_offset++);
+            _instructions.push_back(instruction);
+
             err = analyseStatement();
             if (err.has_value())
                 return err;
+
+            // 分析完了 回填
+            n = _instructions.size();
+            for (int i=n-1;i>=0;i--) {
+                Instruction tmp = _instructions[i];
+                if (tmp.getOpr() == Operation::JMP) {
+                    if (tmp.getOperand().size() == 0) {
+                        _instructions[i].addOperand(opr_offset);
+                        _instructions[i].addBinaryOperand(changeToBinary(opr_offset,2));
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+            unreadToken();
         }
         return {};
     }
@@ -1087,7 +1149,7 @@ namespace miniplc0 {
                 || tmp.getOpr() == Operation::JLE || tmp.getOpr() == Operation::JGE || tmp.getOpr() == Operation::JG)
             {
                 if (tmp.getOperand().size() == 0) {
-                    _instructions[i].addOperand(opr_offset);
+                    _instructions[i].addOperand(opr_offset+1);
                     _instructions[i].addBinaryOperand(changeToBinary(opr_offset+1,2));
                     break;
                 }
@@ -1099,8 +1161,8 @@ namespace miniplc0 {
         std::vector<byte> binary_opr;
         binary_opr.push_back(7);
         binary_opr.push_back(0);
-        operand.push_back(while_offset);
-        binary_operand.push_back(changeToBinary(while_offset,2));
+        operand.push_back(while_offset-1);
+        binary_operand.push_back(changeToBinary(while_offset-1,2));
         Instruction instruction(Operation::JMP,binary_opr,operand,binary_operand ,opr_offset++);
         _instructions.push_back(instruction);
 
@@ -1162,13 +1224,13 @@ namespace miniplc0 {
             auto symbol = findIdentifier(identifier);
             if (!symbol.has_value())
                 return std::make_optional<CompilationError>(_current_pos,ErrIdentifierNotDeclare);
-            symbol = findConstantIdentifier(identifier);
-            if (symbol.has_value())
+            auto symbol1 = findConstantIdentifier(identifier);
+            if (symbol1.has_value())
                 return std::make_optional<CompilationError>(_current_pos,ErrAssignToConstant);
 
             // 有的话 给赋值
             // 先把identifier的地址加载过来 loada
-            int level_diff = _current_level - symbol.value().getLevel();
+            int level_diff = 1 - symbol.value().getLevel();
             int stack_offset = symbol.value().getOffset();
             std::vector<int> operand1;
             std::vector<std::vector<byte>> binary_operand1;
@@ -1277,15 +1339,15 @@ namespace miniplc0 {
     std::optional<CompilationError> Analyser::analyseAssignmentExpression() {
         auto identifier = nextToken();
         // 有且不能是常量
-        auto symbol = findIdentifier(identifier);
+        auto symbol = findVariableIdentifier(identifier);
         if (!symbol.has_value())
             return std::make_optional<CompilationError>(_current_pos,ErrIdentifierNotDeclare);
-        symbol = findConstantIdentifier(identifier);
-        if (symbol.has_value())
-            return std::make_optional<CompilationError>(_current_pos,ErrAssignToConstant);
+//        auto symbol1 = findConstantIdentifier(identifier);
+//        if (symbol1.has_value())
+//            return std::make_optional<CompilationError>(_current_pos,ErrAssignToConstant);
 
         // 将要被赋值的identifier的地址拿出来
-        int level_diff = _current_level - symbol.value().getLevel();
+        int level_diff = 1 - symbol.value().getLevel();
         int stack_offset = symbol.value().getOffset();
         std::vector<int> operand1;
         std::vector<std::vector<byte>> binary_operand1;

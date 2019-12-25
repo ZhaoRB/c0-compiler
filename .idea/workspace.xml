@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="cc0" targetName="cc0_lib" />
       <config projectName="cc0" targetName="cc0" />
+      <config projectName="cc0" targetName="cc0_lib" />
       <config projectName="cc0" targetName="fmt" />
       <config projectName="cc0" targetName="miniplc0_test" />
     </generated>
@@ -17,14 +17,13 @@
     <list default="true" id="470fb422-70cd-455c-8577-d105a0705747" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyser/analyser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyser/analyser.h" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/main.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cc0.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cc0.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/input/s1.s0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/input/yuyi.c0" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/input/yuyi.c0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/libcc0_lib.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/libcc0_lib.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/miniplc0_test.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/miniplc0_test.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -127,6 +126,7 @@
       <workItem from="1577078403370" duration="38464000" />
       <workItem from="1577149985455" duration="37620000" />
       <workItem from="1577236530341" duration="5090000" />
+      <workItem from="1577279279159" duration="10574000" />
     </task>
     <servers />
   </component>
@@ -151,42 +151,42 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>240</line>
+          <line>265</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>1222</line>
+          <line>1284</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>726</line>
+          <line>753</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>604</line>
+          <line>629</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>942</line>
+          <line>969</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>1090</line>
+          <line>1152</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>199</line>
+          <line>224</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>837</line>
+          <line>864</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -196,13 +196,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>713</line>
-          <option name="timeStamp" value="50" />
+          <line>766</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
-          <line>739</line>
-          <option name="timeStamp" value="51" />
+          <line>1211</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>405</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>798</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>606</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -213,6 +228,7 @@
         <watch expression="_variable_symbols" language="ObjectiveC" />
         <watch expression="_constants" language="ObjectiveC" />
         <watch expression="_compilingFunctions" language="ObjectiveC" />
+        <watch expression="_current_level" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>

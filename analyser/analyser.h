@@ -97,6 +97,7 @@ namespace miniplc0 {
         std::optional<CompilingFunction> findFunction(std::optional<Token> identifier);
         std::optional<Symbol> findIdentifier(std::optional<Token> identifier);
         std::optional<Symbol> findConstantIdentifier(std::optional<Token> identifier);
+        std::optional<Symbol> findVariableIdentifier(std::optional<Token> identifier);
         // 删除
         void deleteCurrentLevelSymbol();
         // std::string changeToBinary(int operand, int length);
