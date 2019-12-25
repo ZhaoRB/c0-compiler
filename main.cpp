@@ -138,6 +138,17 @@ std::string oprToString(miniplc0::Operation opr) {
     return s;
 }
 
+std::vector<char> changeToBinary(int operand, int length) {
+    // 都是正数 转换成16进制就行
+    std::vector<char> bytes;
+    for (int i=0;i<length;i++)
+        bytes.push_back(0);
+    for(int i=length-1;i>=0;i--){
+        bytes[i] = (char)(operand>>8*(length-i-1));
+    }
+    return bytes;
+}
+
 // 汇编
 void translateToAssemblingFile(std::istream& input, std::ostream& output) {
     auto tks = _tokenize(input);
@@ -198,9 +209,88 @@ void translateToBinaryFile(std::istream& input, std::ostream& output) {
     auto v = p.first.first; //instruction
     auto s = p.second.first; //constant
     auto f = p.second.second; //function
-    char magic[] = {4,3,3,0,3,10,2,9};
-    char version[] = {0,0,0,0,0,0,0,1};
+    output << (char)0x43 << (char)0x30 << (char)0x3a << (char)0x29;  //magic
+    output << (char)0x00 << (char)0x00 << (char)0x00 << (char)0x01;  //version
+    // constantcount
+    int constant_count = s.size();
+    std::vector<char> _constant_count = changeToBinary(constant_count,2);
+    for (auto c : _constant_count)
+        output << c;
+    // constant_info
+    for (auto info : s) {
+        output << (char)0;  // type = S
+        for (char ch : info.value)
+            output << ch;
+    }
+    // start code info
+    // instruction_count
+    int index = 0;
+    int n = v.size();
+    for (int i=0;i<n;i++) {
+        if (i != 0 && v[i].getOffsetNum() == 0) {
+            index = i;
+            break;
+        }
+    }
+    std::vector<char> instruction_count = changeToBinary(index,2);
+    for (auto c : instruction_count)
+        output << c;
+    // instuction info
+    for (int i=0;i<n;i++) {
+        if (i != 0 && v[i].getOffsetNum() == 0) {
+            break;
+        }
+        for (auto c : v[i].getBinaryOpr())
+            output << c;
+        for (auto bytes : v[i].getBinaryOperand()) {
+            for (auto ch : bytes)
+                output << ch;
+        }
+    }
 
+    // function count
+    int function_count = f.size();
+    std::vector<char> _function_count = changeToBinary(function_count,2);
+    for (auto c : _function_count)
+        output << c;
+    // function info
+    n = f.size();
+    for (int i=0; i<n; i++) {
+        // name_index
+        std::vector<char> name_index = changeToBinary(i,2);
+        for (auto c : name_index)
+            output << c;
+        // para_size
+        std::vector<char> params_size = changeToBinary(f[i].getNum(),2);
+        for (auto c : params_size)
+            output << c;
+        // level
+        output << (char)1;
+        // instuction count
+        int fun_instruction_count = 0;
+        for(int i=index; i<n; i++) {
+            if (v[i].getOffsetNum() == 0) {
+                break;
+            }
+            fun_instruction_count++;
+        }
+        std::vector<char> _fun_instruction_count = changeToBinary(fun_instruction_count,2);
+        for (auto c : _fun_instruction_count)
+            output << c;
+        // instruction info
+        for (int i=index;i<n;i++) {
+            if (i != 0 && v[i].getOffsetNum() == 0) {
+                index = i;
+                break;
+            }
+            for (auto c : v[i].getBinaryOpr())
+                output << c;
+            for (auto bytes : v[i].getBinaryOperand()) {
+                for (auto ch : bytes)
+                    output << ch;
+            }
+        }
+    }
 
 }
 

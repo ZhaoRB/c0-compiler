@@ -712,6 +712,7 @@ namespace miniplc0 {
         }
         // 有参数 在paraList里面添加到符号表
         else {
+            unreadToken();
             auto err = analyseParasList(functionType);
             if (err.has_value())
                 return err;
@@ -756,8 +757,10 @@ namespace miniplc0 {
                     return err;
                 paraNum++;
             }
-            else
+            else {
+                unreadToken();
                 break;
+            }
         }
         // 添加到函数表
         CompilingFunction compilingFunction(identifier.value().GetValueString(),paraNum,functionType.value().GetValueString(),functionIndex);

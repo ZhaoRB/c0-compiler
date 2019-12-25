@@ -1,7 +1,5 @@
-const int b = 2;
-int a = 1;
-
-int main()
-{
-    return a;
+int a = 10;
+int main() {
+    print(a);
+    return 0;
 }
