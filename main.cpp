@@ -5,9 +5,17 @@
 #include "analyser/analyser.h"
 #include "instruction/instruction.h"
 #include "fmts.hpp"
+#include "c0-vm/file.h"
+#include "c0-vm/vm.h"
+#include "c0-vm/exception.h"
+#include "c0-vm/util/print.hpp"
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include <memory>
+#include <string>
+#include <exception>
 
 std::vector<miniplc0::Token> _tokenize(std::istream& input) {
     miniplc0::Tokenizer tkz(input);
@@ -219,9 +227,19 @@ void translateToBinaryFile(std::istream& input, std::ostream& output) {
     // constant_info
     for (auto info : s) {
         output << (char)0;  // type = S
+        // string info
+        // string info length
+        int length = info.value.size();
+        std::vector<char> binary_length = changeToBinary(length,2);
+        for (char ch : binary_length)
+            output << ch;
+        // string info value
         for (char ch : info.value)
             output << ch;
     }
+
+    // 以上没问题
+
     // start code info
     // instruction_count
     int index = 0;
@@ -236,15 +254,14 @@ void translateToBinaryFile(std::istream& input, std::ostream& output) {
     for (auto c : instruction_count)
         output << c;
     // instuction info
-    for (int i=0;i<n;i++) {
-        if (i != 0 && v[i].getOffsetNum() == 0) {
-            break;
-        }
-        for (auto c : v[i].getBinaryOpr())
-            output << c;
-        for (auto bytes : v[i].getBinaryOperand()) {
-            for (auto ch : bytes)
+    for (int i=0; i<index; i++) {
+        auto tmp_instruction = v[i];
+        for (auto c1 : tmp_instruction.getBinaryOpr())
+            output << c1;
+        for (auto bytes : tmp_instruction.getBinaryOperand()) {
+            for (auto ch : bytes) {
                 output << ch;
+            }
         }
     }
 
@@ -258,18 +275,19 @@ void translateToBinaryFile(std::istream& input, std::ostream& output) {
     for (int i=0; i<n; i++) {
         // name_index
         std::vector<char> name_index = changeToBinary(i,2);
-        for (auto c : name_index)
-            output << c;
+        for (auto c1 : name_index)
+            output << c1;
         // para_size
         std::vector<char> params_size = changeToBinary(f[i].getNum(),2);
         for (auto c : params_size)
             output << c;
         // level
+        output << (char)0;
         output << (char)1;
         // instuction count
         int fun_instruction_count = 0;
         for(int i=index; i<n; i++) {
-            if (v[i].getOffsetNum() == 0) {
+            if (i != 0 && v[i].getOffsetNum() == 0) {
                 break;
             }
             fun_instruction_count++;
@@ -291,13 +309,28 @@ void translateToBinaryFile(std::istream& input, std::ostream& output) {
             }
         }
     }
-
 }
 
 //void assembleToBinary(std::istream& input, std::ostream& output) {
-//    translateToBinaryFile(input,output);
+//    std::ofstream outf;
+//    translateToAssemblingFile(input,output);
 //
 //}
+
+void assemble_text(std::ifstream* in, std::ofstream* out, bool run = false) {
+    try {
+        File f = File::parse_file_text(*in);
+        // f.output_text(std::cout);
+        f.output_binary(*out);
+        if (run) {
+            auto avm = std::move(vm::VM::make_vm(f));
+            avm->start();
+        }
+    }
+    catch (const std::exception& e) {
+        println(std::cerr, e.what());
+    }
+}
 
 int main(int argc, char** argv) {
 	argparse::ArgumentParser program("cc0");
@@ -342,7 +375,16 @@ int main(int argc, char** argv) {
 	else
 		input = &std::cin;
 	if (output_file != "-") {
-		outf.open(output_file, std::ios::out | std::ios::trunc);
+	    // 将第一个的输出作为第二个的输入
+        std::stringstream ss;
+        std::string tmp = output_file;
+        ss << output_file << ".zrb";
+        if (program["-c"] == true)
+        {
+            input_file = ss.str();
+            tmp = ss.str();
+        }
+		outf.open(tmp, std::ios::out | std::ios::trunc);
 		if (!outf) {
 			fmt::print(stderr, "Fail to open {} for writing.\n", output_file);
 			exit(2);
@@ -366,7 +408,31 @@ int main(int argc, char** argv) {
 	}
 	else if (program["-c"] == true) {
 	    // 生成二进制文件
-		translateToBinaryFile(*input, *output);
+        translateToAssemblingFile(*input,*output);
+        inf.close();
+        outf.close();
+        {
+            std::ifstream* input;
+            std::ostream* output;
+            std::ifstream inf;
+            std::ofstream outf;
+
+            inf.open(input_file, std::ios::in);
+            if (!inf) {
+                exit(2);
+            }
+            input = &inf;
+            outf.open(output_file, std::ios::out | std::ios::trunc|std::ios::binary);
+            if (!outf) {
+                inf.close();
+                exit(2);
+            }
+            output = &outf;
+            assemble_text(input, dynamic_cast<std::ofstream*>(output), false);
+            inf.close();
+            outf.close();
+        }
+        return 0;
 	}
 
 	else {

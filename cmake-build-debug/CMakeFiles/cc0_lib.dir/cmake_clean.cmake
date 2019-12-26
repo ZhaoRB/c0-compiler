@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj"
+  "CMakeFiles/cc0_lib.dir/c0-vm/file.cpp.obj"
+  "CMakeFiles/cc0_lib.dir/c0-vm/vm.cpp.obj"
   "CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.obj"
   "libcc0_lib.a"
   "libcc0_lib.pdb"

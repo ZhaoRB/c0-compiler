@@ -332,6 +332,45 @@
 		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h">
 			<Option target="cc0_lib"/>
 		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/constant.h">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/exception.h">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/file.cpp">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/file.h">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/function.h">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/instruction.h">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/opcode.h">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/print.hpp">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/tuple_visit.hpp">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/util.hpp">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/vm.cpp">
+			<Option target="cc0_lib"/>
+		</Unit>
+		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/c0-vm/vm.h">
+			<Option target="cc0_lib"/>
+		</Unit>
 		<Unit filename="D:/1 project/Clion project/c0/c0-compiler/error/error.h">
 			<Option target="cc0_lib"/>
 		</Unit>

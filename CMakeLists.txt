@@ -17,6 +17,19 @@ set(lib_src
 	analyser/analyser.h
 	analyser/analyser.cpp
 	instruction/instruction.h
+	c0-vm/util/print.hpp
+	c0-vm/util/tuple_visit.hpp
+	c0-vm/util/util.hpp
+	c0-vm/constant.h
+	c0-vm/exception.h
+	c0-vm/file.cpp
+	c0-vm/file.h
+	c0-vm/function.h
+	c0-vm/instruction.h
+	c0-vm/opcode.h
+	c0-vm/type.h
+	c0-vm/vm.cpp
+	c0-vm/vm.h
 )
 
 set(main_src

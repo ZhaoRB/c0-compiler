@@ -373,17 +373,17 @@ namespace miniplc0 {
 			case PLUS_SIGN_STATE: {
 				// 回退
 				char ch = current_char.value();
-				if (miniplc0::isdigit(ch)) {
-				    if (ch == '0') {
-				        ss << ch;
-                        current_state = DFAState::UNSIGNED_INTEGER_STATE;
-				    }
-                    else {
-                        ss << ch;
-                        current_state = DFAState::DECIMAL_UNSIGNED_INTEGER_STATE;
-                    }
-                    break;
-				}
+//				if (miniplc0::isdigit(ch)) {
+//				    if (ch == '0') {
+//				        ss << ch;
+//                        current_state = DFAState::UNSIGNED_INTEGER_STATE;
+//				    }
+//                    else {
+//                        ss << ch;
+//                        current_state = DFAState::DECIMAL_UNSIGNED_INTEGER_STATE;
+//                    }
+//                    break;
+//				}
 				unreadLast(); // Yes, we unread last char even if it's an EOF.
 				return std::make_pair(std::make_optional<Token>(TokenType::PLUS_SIGN, '+', pos, currentPos()), std::optional<CompilationError>());
 			}
@@ -391,17 +391,17 @@ namespace miniplc0 {
 			case MINUS_SIGN_STATE: {
 				// 回退，并返回减号token
                 char ch = current_char.value();
-                if (miniplc0::isdigit(ch)) {
-                    if (ch == '0') {
-                        ss << ch;
-                        current_state = DFAState::UNSIGNED_INTEGER_STATE;
-                    }
-                    else {
-                        ss << ch;
-                        current_state = DFAState::DECIMAL_UNSIGNED_INTEGER_STATE;
-                    }
-                    break;
-                }
+//                if (miniplc0::isdigit(ch)) {
+//                    if (ch == '0') {
+//                        ss << ch;
+//                        current_state = DFAState::UNSIGNED_INTEGER_STATE;
+//                    }
+//                    else {
+//                        ss << ch;
+//                        current_state = DFAState::DECIMAL_UNSIGNED_INTEGER_STATE;
+//                    }
+//                    break;
+//                }
                 unreadLast(); // Yes, we unread last char even if it's an EOF.
                 return std::make_pair(std::make_optional<Token>(TokenType::MINUS_SIGN, '-', pos, currentPos()), std::optional<CompilationError>());
 			}

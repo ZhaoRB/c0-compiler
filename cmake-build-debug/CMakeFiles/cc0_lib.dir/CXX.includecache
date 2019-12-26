@@ -58,6 +58,32 @@ string
 cstdint
 -
 
+../tokenizer/tokenizer.h
+tokenizer/token.h
+../tokenizer/tokenizer/token.h
+tokenizer/utils.hpp
+../tokenizer/tokenizer/utils.hpp
+error/error.h
+../tokenizer/error/error.h
+utility
+-
+optional
+-
+iostream
+-
+cstdint
+-
+memory
+-
+vector
+-
+string
+-
+
+../tokenizer/utils.hpp
+cctype
+-
+
 D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.cpp
 analyser.h
 D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
@@ -108,6 +134,186 @@ cstddef
 algorithm
 -
 stack
+-
+sstream
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/constant.h
+./type.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+./util/print.hpp
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/print.hpp
+./util/util.hpp
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/util.hpp
+cstdint
+-
+string
+-
+variant
+-
+utility
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/exception.h
+./type.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+exception
+-
+string
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/file.cpp
+./file.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/file.h
+./type.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+./instruction.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/instruction.h
+./constant.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/constant.h
+./function.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/function.h
+./exception.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/exception.h
+./util/print.hpp
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/print.hpp
+iostream
+-
+fstream
+-
+string
+-
+sstream
+-
+vector
+-
+algorithm
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/file.h
+./type.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+./instruction.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/instruction.h
+./constant.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/constant.h
+./function.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/function.h
+iostream
+-
+fstream
+-
+vector
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/function.h
+./type.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+./util/print.hpp
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/print.hpp
+./instruction.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/instruction.h
+cstdint
+-
+vector
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/instruction.h
+./opcode.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/opcode.h
+./util/print.hpp
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/print.hpp
+cstdint
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/opcode.h
+./type.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+vector
+-
+unordered_map
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+cstdint
+-
+string
+-
+type_traits
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/print.hpp
+./tuple_visit.hpp
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/tuple_visit.hpp
+iostream
+-
+sstream
+-
+tuple
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/tuple_visit.hpp
+tuple
+-
+cassert
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/util/util.hpp
+iostream
+-
+iomanip
+-
+cstdint
+-
+algorithm
+-
+string
+-
+sstream
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/vm.cpp
+./vm.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/vm.h
+./type.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+./instruction.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/instruction.h
+./exception.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/exception.h
+iostream
+-
+iomanip
+-
+cmath
+-
+
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/vm.h
+./type.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/type.h
+./instruction.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/instruction.h
+./constant.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/constant.h
+./function.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/function.h
+./file.h
+D:/1 project/Clion project/c0/c0-compiler/c0-vm/file.h
+memory
+-
+cstdint
+-
+string
+-
+vector
+-
+variant
+-
+
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.cpp
+tokenizer/tokenizer.h
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer/tokenizer.h
+cctype
 -
 sstream
 -

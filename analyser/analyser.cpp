@@ -317,6 +317,7 @@ namespace miniplc0 {
             if (next.value().GetType() != TokenType::SEMICOLON)
                 return std::make_optional<CompilationError>(_current_pos,ErrorCode::ErrNoSemicolon);
         }
+
         return {};
 	}
 
@@ -379,8 +380,8 @@ namespace miniplc0 {
                     std::vector<int> operand;
                     std::vector<std::vector<byte>> binary_operand;
                     std::vector<byte> binary_opr;
-                    binary_opr.push_back(0);
-                    binary_opr.push_back(12);
+                    binary_opr.push_back(0x0c);
+                    //binary_opr.push_back(12);
                     operand.push_back(1);
                     std::vector<byte> bytes = changeToBinary(1,4);
                     binary_operand.push_back(bytes);
@@ -420,8 +421,8 @@ namespace miniplc0 {
                     std::vector<int> operand;
                     std::vector<std::vector<byte>> binary_operand;
                     std::vector<byte> binary_opr;
-                    binary_opr.push_back(3);
-                    binary_opr.push_back(0);
+                    binary_opr.push_back(0x30);
+                    //binary_opr.push_back(0);
                     Instruction instruction(Operation::IADD,binary_opr,operand,binary_operand,opr_offset++);
                     _instructions.push_back(instruction);
                 }
@@ -429,8 +430,8 @@ namespace miniplc0 {
                     std::vector<int> operand;
                     std::vector<std::vector<byte>> binary_operand;
                     std::vector<byte> binary_opr;
-                    binary_opr.push_back(3);
-                    binary_opr.push_back(4);
+                    binary_opr.push_back(0x34);
+                    //binary_opr.push_back(4);
                     Instruction instruction(Operation::ISUB,binary_opr,operand,binary_operand,opr_offset++);
                     _instructions.push_back(instruction);
                 }
@@ -461,8 +462,8 @@ namespace miniplc0 {
                     std::vector<int> operand;
                     std::vector<std::vector<byte>> binary_operand;
                     std::vector<byte> binary_opr;
-                    binary_opr.push_back(3);
-                    binary_opr.push_back(8);
+                    binary_opr.push_back(0x38);
+                    // binary_opr.push_back(8);
                     Instruction instruction(Operation::IMUL,binary_opr,operand,binary_operand, opr_offset++);
                     _instructions.push_back(instruction);
                 }
@@ -470,8 +471,8 @@ namespace miniplc0 {
                     std::vector<int> operand;
                     std::vector<std::vector<byte>> binary_operand;
                     std::vector<byte> binary_opr;
-                    binary_opr.push_back(3);
-                    binary_opr.push_back(12);
+                    binary_opr.push_back(0x3c);
+                    // binary_opr.push_back(12);
                     Instruction instruction(Operation::IDIV,binary_opr,operand,binary_operand, opr_offset++);
                     _instructions.push_back(instruction);
                 }
@@ -538,8 +539,8 @@ namespace miniplc0 {
                     std::vector<int> operand;
                     std::vector<std::vector<byte>> binary_operand;
                     std::vector<byte> binary_opr;
-                    binary_opr.push_back(0);
-                    binary_opr.push_back(10);
+                    binary_opr.push_back(0x0a);
+                    //binary_opr.push_back(10);
                     operand.push_back(level_diff);
                     operand.push_back(stackOffset);
                     std::vector<byte> v1 = changeToBinary(level_diff,2); // 2字节
@@ -552,8 +553,8 @@ namespace miniplc0 {
                     std::vector<int> operand2;
                     std::vector<std::vector<byte>> binary_operand2;
                     std::vector<byte> binary_opr2;
-                    binary_opr2.push_back(1);
-                    binary_opr2.push_back(0);
+                    binary_opr2.push_back(0x10);
+                    // binary_opr2.push_back(0);
                     Instruction instruction2(Operation::ILOAD,binary_opr2,operand2,binary_operand2,opr_offset++);
                     _instructions.push_back(instruction2);
                 }
@@ -572,8 +573,8 @@ namespace miniplc0 {
             operand.push_back(value);
             binary_operand.push_back(binary_value);
             std::vector<byte> binary_opr;
-            binary_opr.push_back(0);
-            binary_opr.push_back(2);
+            binary_opr.push_back(0x02);
+            // binary_opr.push_back(2);
             Instruction instruction(Operation::IPUSH,binary_opr,operand,binary_operand ,opr_offset++);
             _instructions.push_back(instruction);
 	    }
@@ -593,8 +594,8 @@ namespace miniplc0 {
             std::vector<int> operand;
             std::vector<std::vector<byte>> binary_operand;
             std::vector<byte> binary_opr;
-            binary_opr.push_back(4);
-            binary_opr.push_back(0);
+            binary_opr.push_back(0x40);
+            // binary_opr.push_back(0);
             Instruction instruction(Operation::INEG,binary_opr,operand,binary_operand ,opr_offset++);
             _instructions.push_back(instruction);
 	    }
@@ -674,8 +675,8 @@ namespace miniplc0 {
         std::vector<int> operand;
         std::vector<std::vector<byte>> binary_operand;
         std::vector<byte> binary_opr;
-        binary_opr.push_back(8);
-        binary_opr.push_back(0);
+        binary_opr.push_back(0x80);
+        // binary_opr.push_back(0);
         operand.push_back(oneFunction.value().getIndex());
         std::vector<byte> s = changeToBinary(oneFunction.value().getIndex(),4);
         binary_operand.push_back(s);
@@ -758,6 +759,24 @@ namespace miniplc0 {
             return err;
         if (!hasReturn)
             return std::make_optional<CompilationError>(_current_pos,ErrNoReturnStatement);
+
+        // 如果没有return 也要ret
+        Operation opr;
+        std::vector<byte> binary_opr;
+        std::vector<int> operand;
+        std::vector<std::vector<byte>> binary_operand;
+        if (isVoid) {
+            opr = Operation::RET;
+            binary_opr.push_back(0x88);
+            //binary_opr.push_back(8);
+        }
+        else {
+            opr = Operation::IRET;
+            binary_opr.push_back(0x89);
+            //binary_opr.push_back(9);
+        }
+        Instruction instruction(opr,binary_opr,operand,binary_operand ,opr_offset++);
+        _instructions.push_back(instruction);
 
         return {};
     }
@@ -983,37 +1002,36 @@ namespace miniplc0 {
             std::vector<int> operand;
             std::vector<std::vector<byte>> binary_operand;
             std::vector<byte> binary_opr;
-            binary_opr.push_back(4);
-            binary_opr.push_back(4);
+            binary_opr.push_back(0x44);
+            // binary_opr.push_back(4);
             Instruction instruction(Operation::ICMP,binary_opr,operand,binary_operand ,opr_offset++);
             _instructions.push_back(instruction);
             // 根据具体是什么符号 跳转 不满足if条件的时候跳转 也就是相反的时候
             Operation opr;
             std::vector<byte> _binary_opr;
-            _binary_opr.push_back(7);
             switch (type) {
                 case TokenType::IS_EQUAL_SIGN :
-                    _binary_opr.push_back(2);
+                    _binary_opr.push_back(0x72);
                     opr = Operation::JNE;
                     break;
                 case TokenType::NOT_EQUAL_SIGN :
-                    _binary_opr.push_back(1);
+                    _binary_opr.push_back(0x71);
                     opr = Operation::JE;
                     break;
                 case TokenType::LESS_THAN_SIGN :
-                    _binary_opr.push_back(4);
+                    _binary_opr.push_back(0x74);
                     opr = Operation::JGE;
                     break;
                 case TokenType::LESS_OR_EQUAL_SIGN :
-                    _binary_opr.push_back(5);
+                    _binary_opr.push_back(0x75);
                     opr = Operation::JG;
                     break;
                 case TokenType::MORE_THAN_SIGN :
-                    _binary_opr.push_back(6);
+                    _binary_opr.push_back(0x76);
                     opr = Operation::JLE;
                     break;
                 case TokenType::MORE_OR_EQUAL_SIGN :
-                    _binary_opr.push_back(3);
+                    _binary_opr.push_back(0x73);
                     opr = Operation::JL;
                     break;
                 default:
@@ -1034,8 +1052,8 @@ namespace miniplc0 {
             std::vector<int> operand;
             std::vector<std::vector<byte>> binary_operand;
             std::vector<byte> binary_opr;
-            binary_opr.push_back(7);
-            binary_opr.push_back(2);
+            binary_opr.push_back(0x72);
+            // binary_opr.push_back(2);
             Instruction instruction(Operation::JNE,binary_opr,operand,binary_operand ,opr_offset++);
             _instructions.push_back(instruction);
 
@@ -1093,8 +1111,8 @@ namespace miniplc0 {
             std::vector<int> operand;
             std::vector<std::vector<byte>> binary_operand;
             std::vector<byte> binary_opr;
-            binary_opr.push_back(7);
-            binary_opr.push_back(0);
+            binary_opr.push_back(0x70);
+            // binary_opr.push_back(0);
             Instruction instruction(Operation::JMP,binary_opr,operand,binary_operand ,opr_offset++);
             _instructions.push_back(instruction);
 
@@ -1159,8 +1177,8 @@ namespace miniplc0 {
         std::vector<int> operand;
         std::vector<std::vector<byte>> binary_operand;
         std::vector<byte> binary_opr;
-        binary_opr.push_back(7);
-        binary_opr.push_back(0);
+        binary_opr.push_back(0x70);
+        // binary_opr.push_back(0);
         operand.push_back(while_offset-1);
         binary_operand.push_back(changeToBinary(while_offset-1,2));
         Instruction instruction(Operation::JMP,binary_opr,operand,binary_operand ,opr_offset++);
@@ -1195,13 +1213,13 @@ namespace miniplc0 {
         std::vector<std::vector<byte>> binary_operand;
         if (isVoid) {
             opr = Operation::RET;
-            binary_opr.push_back(8);
-            binary_opr.push_back(8);
+            binary_opr.push_back(0x88);
+            // binary_opr.push_back(8);
         }
         else {
             opr = Operation::IRET;
-            binary_opr.push_back(8);
-            binary_opr.push_back(9);
+            binary_opr.push_back(0x89);
+            // binary_opr.push_back(9);
         }
         Instruction instruction(opr,binary_opr,operand,binary_operand ,opr_offset++);
         _instructions.push_back(instruction);
@@ -1235,8 +1253,8 @@ namespace miniplc0 {
             std::vector<int> operand1;
             std::vector<std::vector<byte>> binary_operand1;
             std::vector<byte> binary_opr1;
-            binary_opr1.push_back(0);
-            binary_opr1.push_back(10);
+            binary_opr1.push_back(0x0a);
+            // binary_opr1.push_back(10);
             operand1.push_back(level_diff);
             operand1.push_back(stack_offset);
             binary_operand1.push_back(changeToBinary(level_diff,2));
@@ -1248,8 +1266,8 @@ namespace miniplc0 {
             std::vector<int> operand;
             std::vector<std::vector<byte>> binary_operand;
             std::vector<byte> binary_opr;
-            binary_opr.push_back(11);
-            binary_opr.push_back(0);
+            binary_opr.push_back(0xb0);
+            // binary_opr.push_back(0);
             Instruction instruction(Operation::ISCAN,binary_opr,operand,binary_operand ,opr_offset++);
             _instructions.push_back(instruction);
 
@@ -1257,8 +1275,8 @@ namespace miniplc0 {
             std::vector<int> operand2;
             std::vector<std::vector<byte>> binary_operand2;
             std::vector<byte> binary_opr2;
-            binary_opr2.push_back(2);
-            binary_opr2.push_back(0);
+            binary_opr2.push_back(0x20);
+            // binary_opr2.push_back(0);
             Instruction instruction2(Operation::ISTORE,binary_opr2,operand2,binary_operand2 ,opr_offset++);
             _instructions.push_back(instruction2);
 
@@ -1308,8 +1326,8 @@ namespace miniplc0 {
         std::vector<int> operand;
         std::vector<std::vector<byte>> binary_operand;
         std::vector<byte> binary_opr;
-        binary_opr.push_back(10);
-        binary_opr.push_back(0);
+        // binary_opr.push_back(10);
+        binary_opr.push_back(0xa0);
         Instruction instruction(Operation::IPRINT,binary_opr,operand,binary_operand ,opr_offset++);
         _instructions.push_back(instruction);
 
@@ -1323,8 +1341,8 @@ namespace miniplc0 {
                 std::vector<int> operand1;
                 std::vector<std::vector<byte>> binary_operand1;
                 std::vector<byte> binary_opr1;
-                binary_opr1.push_back(10);
-                binary_opr1.push_back(0);
+                // binary_opr1.push_back(10);
+                binary_opr1.push_back(0xa0);
                 Instruction instruction1(Operation::IPRINT,binary_opr1,operand1,binary_operand1 ,opr_offset++);
                 _instructions.push_back(instruction1);
             }
@@ -1352,8 +1370,8 @@ namespace miniplc0 {
         std::vector<int> operand1;
         std::vector<std::vector<byte>> binary_operand1;
         std::vector<byte> binary_opr1;
-        binary_opr1.push_back(0);
-        binary_opr1.push_back(10);
+        binary_opr1.push_back(0x0a);
+        // binary_opr1.push_back(10);
         operand1.push_back(level_diff);
         operand1.push_back(stack_offset);
         binary_operand1.push_back(changeToBinary(level_diff,2));
@@ -1371,8 +1389,8 @@ namespace miniplc0 {
         std::vector<int> operand2;
         std::vector<std::vector<byte>> binary_operand2;
         std::vector<byte> binary_opr2;
-        binary_opr2.push_back(2);
-        binary_opr2.push_back(0);
+        binary_opr2.push_back(0x20);
+        // binary_opr2.push_back(0);
         Instruction instruction2(Operation::ISTORE,binary_opr2,operand2,binary_operand2 ,opr_offset++);
         _instructions.push_back(instruction2);
 
