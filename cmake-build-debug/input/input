@@ -1,19 +1,13 @@
-int fun(int a, int b) {
-    int ans = 1;
-    while (b) {
-        ans = ans * a;
-        b = b - 1;
-    }
-    return ans;
-}
-
 int main() {
-    int a;
-    int b;
-    int c;
-    scan(a);
-    scan(b);
-    c = fun(a,b);
-    print(c);
+
+    if(1) {
+
+    }
+    else {
+
+    }
+    else {
+
+    }
     return 0;
 }

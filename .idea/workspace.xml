@@ -17,16 +17,11 @@
     <list default="true" id="470fb422-70cd-455c-8577-d105a0705747" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyser/analyser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/analyser/analyser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/main.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0.dir/objects.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/analyser/analyser.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc0_lib.dir/tokenizer/tokenizer.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cc0.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cc0.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/input/input" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/input/input" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/libcc0_lib.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/libcc0_lib.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error/error.h" beforeDir="false" afterPath="$PROJECT_DIR$/error/error.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fmts.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/fmts.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tokenizer/tokenizer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tokenizer/tokenizer.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +129,7 @@
       <workItem from="1577279279159" duration="11782000" />
       <workItem from="1577295684883" duration="1142000" />
       <workItem from="1577342751212" duration="29828000" />
-      <workItem from="1578193243234" duration="27308000" />
+      <workItem from="1578193243234" duration="28472000" />
     </task>
     <servers />
   </component>
@@ -231,6 +226,16 @@
           <url>file://$PROJECT_DIR$/main.cpp</url>
           <line>162</line>
           <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>1062</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/analyser/analyser.cpp</url>
+          <line>1105</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

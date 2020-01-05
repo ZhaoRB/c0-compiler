@@ -981,7 +981,7 @@ namespace miniplc0 {
          }
          else if (type == TokenType::SEMICOLON);
          else
-             std::make_optional<CompilationError>(_current_pos,ErrInvalidStatement);
+             return std::make_optional<CompilationError>(_current_pos,ErrInvalidStatement);
         return {};
     }
 
