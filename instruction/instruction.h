@@ -104,6 +104,9 @@ namespace miniplc0 {
 	    Instruction(Operation _opr, std::vector<byte> _binary_opr, std::vector<int> _operand, std::vector<std::vector<byte>> _binary_operand, int _offset_num)
 	        :opr(_opr), binary_opr(std::move(_binary_opr)), operand(std::move(_operand)), binary_operand(std::move(_binary_operand)), offset_num(_offset_num) {}
 
+        // 无参数的构造函数
+        Instruction() {}
+
     public:
 	    Operation getOpr();
         std::vector<byte> getBinaryOpr();
@@ -112,6 +115,7 @@ namespace miniplc0 {
 	    int getOffsetNum();
         void addOperand(int offset); // 添加操作数 用于回填
         void addBinaryOperand(std::vector<byte> binary_offset);
+        void setOffsetNum(int n);
 
 	};
 

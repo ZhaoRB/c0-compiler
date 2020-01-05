@@ -262,8 +262,14 @@ namespace miniplc0 {
                     break;
             }
         }
+        // 判断有没有全局变量
+        // 生成一个instruction 用offset = -1标志分界
+        Instruction divide;
+        divide.setOffsetNum(0);
+        _instructions.push_back(divide);
         // 函数声明语句是0个或多个
         while (true) {
+
             auto next = nextToken();
             if (!next.has_value()) {
                 if (!hasMain)
@@ -317,7 +323,6 @@ namespace miniplc0 {
             if (next.value().GetType() != TokenType::SEMICOLON)
                 return std::make_optional<CompilationError>(_current_pos,ErrorCode::ErrNoSemicolon);
         }
-
         return {};
 	}
 
@@ -663,15 +668,6 @@ namespace miniplc0 {
 
         // 生成指令
         // call指令
-//        int index;
-//        int n = _compilingFunctions.size();
-//        std::string name = oneFunction.value().getName();
-//        for (int i=0; i<n; i++) {
-//            if (name == _compilingFunctions[i].getName()) {
-//                index = i;
-//                break;
-//            }
-//        }
         std::vector<int> operand;
         std::vector<std::vector<byte>> binary_operand;
         std::vector<byte> binary_opr;
@@ -690,8 +686,8 @@ namespace miniplc0 {
     //    <function-definition> ::=<type-specifier><identifier><parameter-clause><compound-statement>
     //    <parameter-clause> ::='(' [<parameter-declaration-list>] ')'
     std::optional<CompilationError> Analyser::analyseFunctionDeclaration() {
-        opr_offset = 0;
-        _offsets = 0;
+        opr_offset = 0;     //第几条指令
+        _offsets = 0;       //loada使用，在栈帧中的什么位置
         auto next = nextToken();
         auto type = next.value().GetType();
         if (type != TokenType::INT && type != TokenType::VOID)
@@ -727,6 +723,9 @@ namespace miniplc0 {
             return std::make_optional<CompilationError>(_current_pos,ErrNoBracket);
         _current_level++; // 参数表的level要+1
 
+
+        _offsets = 0;
+
         // 判断有无参数
         next = nextToken();
         type = next.value().GetType();
@@ -753,7 +752,6 @@ namespace miniplc0 {
 
         // 函数体
         hasReturn = false;
-        _offsets = 0;
         auto err = analyseCompoundStatement();
         if (err.has_value())
             return err;
@@ -1239,12 +1237,13 @@ namespace miniplc0 {
         if (type == TokenType::IDENTIFIER) {
             // 查看有没有
             // 不能是常量
-            auto symbol = findIdentifier(identifier);
+            auto symbol = findVariableIdentifier(identifier);
             if (!symbol.has_value())
                 return std::make_optional<CompilationError>(_current_pos,ErrIdentifierNotDeclare);
-            auto symbol1 = findConstantIdentifier(identifier);
-            if (symbol1.has_value())
-                return std::make_optional<CompilationError>(_current_pos,ErrAssignToConstant);
+//            auto symbol1 = findConstantIdentifier(identifier);
+//            if (symbol1.has_value())
+//                return std::make_optional<CompilationError>(_current_pos,ErrAssignToConstant);
+
 
             // 有的话 给赋值
             // 先把identifier的地址加载过来 loada

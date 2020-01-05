@@ -1,0 +1,15 @@
+void fun(){
+    int a = 1;
+    print(1);
+    return;
+}
+
+int main() {
+	int a = 10;
+	if (a > 0)
+		return 0;
+	else if (a == 0)
+		return 1;
+	else
+		return 2;
+}

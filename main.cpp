@@ -33,20 +33,14 @@ void Tokenize(std::istream& input, std::ostream& output) {
 		output << fmt::format("{}\n", it);
 }
 
-void Analyse(std::istream& input, std::ostream& output){
-	auto tks = _tokenize(input);
-	miniplc0::Analyser analyser(tks);
-	auto p = analyser.Analyse();
-	if (p.first.second.has_value()) {
+void Analyse(std::istream& input, std::ostream& output) {
+    auto tks = _tokenize(input);
+    miniplc0::Analyser analyser(tks);
+    auto p = analyser.Analyse();
+    if (p.first.second.has_value()) {
         fmt::print(stderr, "Syntactic analysis error: {}\n", p.first.second.value());
         exit(2);
     }
-	// 输出常量表和函数表
-//	auto v = p.first;
-//	for (auto& it : v)
-//		output << fmt::format("{}\n", it);
-//	// 测试语义分析
-//	std::cout << "OK!" << std::endl;
 }
 
 std::string oprToString(miniplc0::Operation opr) {
@@ -179,21 +173,29 @@ void translateToAssemblingFile(std::istream& input, std::ostream& output) {
     int funNum = 0;
     for (auto instruction : v) {
         if (instruction.getOffsetNum() == 0) {
+            // 这个地方有问题 如果没有全局变量 .start应该没有内容
             // 输出.start
             if (funNum == 0)
                 output << ".start:" << std::endl;
             // 第一次输出.functions
             else if (funNum == 1) {
+                if (instruction.getBinaryOpr().empty())
+                    continue;
                 output << ".functions:" << std::endl;
                 n = f.size();
                 for (int i=0;i<n;i++)
                     output << i << "  " << f[i].getIndex() << "  " << f[i].getNum() << "  " << 1 << std::endl;
                 output << ".F" << funNum-1 << ":" << std::endl;
             }
-            else
+            else {
+                if (instruction.getBinaryOpr().empty())
+                    continue;
                 output << ".F" << funNum-1 << ":" << std::endl;
+            }
             funNum++;
         }
+        if (instruction.getBinaryOpr().empty())
+            continue;
         output << instruction.getOffsetNum() << "    " << oprToString(instruction.getOpr()) << "  ";
         int operandNum = instruction.getOperand().size();
         if (operandNum == 1)
@@ -310,12 +312,6 @@ void translateToBinaryFile(std::istream& input, std::ostream& output) {
         }
     }
 }
-
-//void assembleToBinary(std::istream& input, std::ostream& output) {
-//    std::ofstream outf;
-//    translateToAssemblingFile(input,output);
-//
-//}
 
 void assemble_text(std::ifstream* in, std::ofstream* out, bool run = false) {
     try {

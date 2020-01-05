@@ -38,4 +38,8 @@ namespace miniplc0 {
         binary_operand.push_back(binary_offset);
     }
 
+    void Instruction::setOffsetNum(int n) {
+        offset_num = n;
+    }
+
 }

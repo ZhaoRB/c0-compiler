@@ -52,6 +52,7 @@ namespace miniplc0 {
         int functionIndex;
         int opr_offset; //每当函数声明时候=0，是这个函数的第几个指令
         bool isLoop;
+        bool hasGlobal;
 
         // “目标代码生成”时使用
         // 这三个vector是存储最后要输出的信息，并不是程序运行时候所需要的数据结构
@@ -73,7 +74,7 @@ namespace miniplc0 {
 		    _constant_symbols({}),_variable_symbols({}),
 		    isConstant(false),_current_level(0),isVoid(false),
 		    isMain(false),hasMain(false),hasReturn(false),
-		    _offsets(0), functionIndex(0), opr_offset(0), isLoop(false),
+		    _offsets(0), functionIndex(0), opr_offset(0), isLoop(false),hasGlobal(false),
             _instructions({}), _constants({}), _functions({}),
             _offset(0), _nextTokenIndex(0) {}
 		// 唯一接口
