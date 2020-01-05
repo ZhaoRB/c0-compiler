@@ -115,6 +115,9 @@ namespace fmt {
             case miniplc0::ErrNoReturnStatement:
                 name = "no return statement in this function";
                 break;
+            case miniplc0::ErrComent:
+                name = "multi-line comments are not complete";
+                break;
             }
             return format_to(ctx.out(), name);
         }

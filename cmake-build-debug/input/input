@@ -1,32 +1,19 @@
-const int a = 0x0000ffff;
-int b = 0x000000ff;
-
-int fun() {
-    print(a,b);
-    return 0x7fffffff;
-}
-
-void pp(int a,int b) {
-    print(a,b);
-    return;
-}
-
-void swap(int a,int b) {
-    int temp = a;
-    a = b;
-    b = temp;
-    pp(a,b);
-    return;
+int fun(int a, int b) {
+    int ans = 1;
+    while (b) {
+        ans = ans * a;
+        b = b - 1;
+    }
+    return ans;
 }
 
 int main() {
-    int a,b;
+    int a;
+    int b;
+    int c;
     scan(a);
     scan(b);
-    pp(a,b);
-    fun();
-    swap(a,b);
-    pp(a,b);
-    fun();
+    c = fun(a,b);
+    print(c);
     return 0;
 }

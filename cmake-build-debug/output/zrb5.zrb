@@ -1,0 +1,25 @@
+.constants:
+0  S  "main"
+.start:
+.functions:
+0  0  0  1
+.F0:
+0    ipush  1
+1    je  16
+2    ipush  1
+3    je  16
+4    ipush  0
+5    je  13
+6    ipush  1
+7    je  12
+8    ipush  1
+9    iprint  
+10    printl  
+11    jmp  6
+12    jmp  16
+13    ipush  21
+14    iprint  
+15    printl  
+16    ipush  0
+17    iret  
+18    iret  

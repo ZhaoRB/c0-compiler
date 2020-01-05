@@ -425,7 +425,12 @@ namespace miniplc0 {
                         if (end1 == '*' && end2 == '/')
                             break;
                         end1 = end2;
-                        end2 = nextChar().value();
+                        auto endzrb = nextChar();
+                        // 到文件尾了
+                        if (!endzrb.has_value()) {
+                            return std::make_pair(std::optional<Token>(),std::make_optional<CompilationError>(pos,ErrorCode::ErrComent));
+                        }
+                        end2 = endzrb.value();
                     }
                     current_state = DFAState::INITIAL_STATE;
                     ss >> c;

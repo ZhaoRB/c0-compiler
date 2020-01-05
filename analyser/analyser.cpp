@@ -1050,9 +1050,9 @@ namespace miniplc0 {
             std::vector<int> operand;
             std::vector<std::vector<byte>> binary_operand;
             std::vector<byte> binary_opr;
-            binary_opr.push_back(0x72);
+            binary_opr.push_back(0x71);
             // binary_opr.push_back(2);
-            Instruction instruction(Operation::JNE,binary_opr,operand,binary_operand ,opr_offset++);
+            Instruction instruction(Operation::JE,binary_opr,operand,binary_operand ,opr_offset++);
             _instructions.push_back(instruction);
 
             // 要回填这个offset

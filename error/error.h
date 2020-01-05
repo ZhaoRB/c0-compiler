@@ -56,6 +56,7 @@ namespace miniplc0 {
         ErrConstantNeedValue,
         ErrNoMainFunction,
         ErrNoReturnStatement,
+        ErrComent,
 
 	};
 
