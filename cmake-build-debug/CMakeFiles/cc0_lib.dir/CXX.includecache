@@ -16,38 +16,6 @@ utility
 iostream
 -
 
-../instruction/instruction.h
-cstdint
--
-utility
--
-vector
--
-string
--
-
-../table/compilingFunction.h
-string
--
-utility
--
-vector
--
-
-../table/constant.h
-string
--
-utility
--
-
-../table/function.h
-
-../table/symbol.h
-string
--
-utility
--
-
 ../tokenizer/token.h
 error/error.h
 ../tokenizer/error/error.h
@@ -58,56 +26,36 @@ string
 cstdint
 -
 
-D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.cpp
-analyser.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
-instruction/instruction.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/instruction/instruction.h
-climits
--
-sstream
--
+../tokenizer/tokenizer.h
+tokenizer/token.h
+../tokenizer/tokenizer/token.h
+tokenizer/utils.hpp
+../tokenizer/tokenizer/utils.hpp
+error/error.h
+../tokenizer/error/error.h
 utility
 -
-vector
+optional
 -
-algorithm
+iostream
+-
+cstdint
+-
+memory
+-
+vector
 -
 string
 -
 
-D:/1 project/Clion project/c0/c0-compiler/analyser/analyser.h
-error/error.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/error/error.h
-instruction/instruction.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/instruction/instruction.h
-tokenizer/token.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/tokenizer/token.h
-table/constant.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/table/constant.h
-table/function.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/table/function.h
-table/symbol.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/table/symbol.h
-table/compilingFunction.h
-D:/1 project/Clion project/c0/c0-compiler/analyser/table/compilingFunction.h
-utility
+../tokenizer/utils.hpp
+cctype
 -
-vector
--
-optional
--
-utility
--
-map
--
-cstdint
--
-cstddef
--
-algorithm
--
-stack
+
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer.cpp
+tokenizer/tokenizer.h
+D:/1 project/Clion project/c0/c0-compiler/tokenizer/tokenizer/tokenizer.h
+cctype
 -
 sstream
 -

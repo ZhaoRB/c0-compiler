@@ -1,0 +1,34 @@
+.constants:
+0  S  "fun"
+1  S  "main"
+.start:
+.functions:
+0  0  0  1
+1  1  0  1
+.F0:
+0    ipush  1
+1    ipush  1
+2    iprint  
+3    ret  
+4    ret  
+.F1:
+0    ipush  10
+1    loada  0,  0
+2    iload  
+3    ipush  0
+4    icmp  
+5    jle  9
+6    ipush  0
+7    iret  
+8    jmp  19
+9    loada  0,  0
+10    iload  
+11    ipush  0
+12    icmp  
+13    jne  17
+14    ipush  1
+15    iret  
+16    jmp  19
+17    ipush  2
+18    iret  
+19    iret  

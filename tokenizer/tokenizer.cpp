@@ -406,8 +406,33 @@ namespace miniplc0 {
                 return std::make_pair(std::make_optional<Token>(TokenType::MINUS_SIGN, '-', pos, currentPos()), std::optional<CompilationError>());
 			}
             case DIVISION_SIGN_STATE: {
-                unreadLast();
-                return std::make_pair(std::make_optional<Token>(TokenType::DIVISION_SIGN, '/', pos, currentPos()), std::optional<CompilationError>());
+                char c = current_char.value();
+                if (c == '/') {
+                    char end = nextChar().value();
+                    while (end != '\n') {
+                        end = nextChar().value();
+                    }
+                    current_state = DFAState::INITIAL_STATE;
+                    ss >> c;
+                    break;
+                }
+                else if (c == '*') {
+                    char end1 = nextChar().value();
+                    char end2 = nextChar().value();
+                    while (true) {
+                        if (end1 == '*' && end2 == '/')
+                            break;
+                        end1 = end2;
+                        end2 = nextChar().value();
+                    }
+                    current_state = DFAState::INITIAL_STATE;
+                    ss >> c;
+                    break;
+                }
+                else {
+                    unreadLast();
+                    return std::make_pair(std::make_optional<Token>(TokenType::DIVISION_SIGN, '/', pos, currentPos()), std::optional<CompilationError>());
+                }
             }
             case MULTIPLICATION_SIGN_STATE: {
                 unreadLast();
