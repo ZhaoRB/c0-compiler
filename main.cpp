@@ -136,6 +136,12 @@ std::string oprToString(miniplc0::Operation opr) {
         case miniplc0::ISCAN:
             s = "iscan";
             break;
+        case miniplc0::CPRINT:
+            s = "cprint";
+            break;
+        case miniplc0::PRINTL:
+            s = "printl";
+            break;
     }
     return s;
 }

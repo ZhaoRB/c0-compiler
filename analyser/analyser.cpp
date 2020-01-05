@@ -1333,6 +1333,25 @@ namespace miniplc0 {
         while (true) {
             auto next = nextToken();
             if (next.value().GetType() == TokenType::COMMA_SIGN) {
+                // 遇到一个逗号 输出一个空格
+                // bipush 32
+                std::vector<byte> binary_value = changeToBinary(32,4);
+                std::vector<int> operand10;
+                std::vector<std::vector<byte>> binary_operand10;
+                std::vector<byte> binary_opr10;
+                binary_opr10.push_back(0x01);
+                operand10.push_back(32);
+                binary_operand10.push_back(binary_value);
+                Instruction instruction10(Operation::BIPUSH,binary_opr10,operand10,binary_operand10 ,opr_offset++);
+                _instructions.push_back(instruction10);
+                // cprint
+                std::vector<int> operand20;
+                std::vector<std::vector<byte>> binary_operand20;
+                std::vector<byte> binary_opr20;
+                binary_opr20.push_back(0xa2);
+                Instruction instruction20(Operation::CPRINT,binary_opr20,operand20,binary_operand20 ,opr_offset++);
+                _instructions.push_back(instruction20);
+
                 err = analyseExpression();
                 if (err.has_value())
                     return err;
@@ -1350,6 +1369,14 @@ namespace miniplc0 {
                 break;
             }
         }
+        // 所有输出完了之后 输出一个换行
+        std::vector<int> operand30;
+        std::vector<std::vector<byte>> binary_operand30;
+        std::vector<byte> binary_opr30;
+        binary_opr30.push_back(0xaf);
+        Instruction instruction30(Operation::PRINTL,binary_opr30,operand30,binary_operand30 ,opr_offset++);
+        _instructions.push_back(instruction30);
+
         return {};
     }
     //    <assignment-expression> ::=<identifier><assignment-operator><expression>

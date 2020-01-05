@@ -1,0 +1,85 @@
+.constants:
+0  S  "fun"
+1  S  "pp"
+2  S  "swap"
+3  S  "main"
+.start:
+0    ipush  65535
+1    ipush  255
+.functions:
+0  0  0  1
+1  1  2  1
+2  2  2  1
+3  3  0  1
+.F0:
+0    loada  1,  0
+1    iload  
+2    iprint  
+3    bipush  32
+4    cprint  
+5    loada  1,  1
+6    iload  
+7    iprint  
+8    printl  
+9    ipush  2147483647
+10    iret  
+11    iret  
+.F1:
+0    loada  0,  0
+1    iload  
+2    iprint  
+3    bipush  32
+4    cprint  
+5    loada  0,  1
+6    iload  
+7    iprint  
+8    printl  
+9    ret  
+10    ret  
+.F2:
+0    loada  0,  0
+1    iload  
+2    loada  0,  0
+3    loada  0,  1
+4    iload  
+5    istore  
+6    loada  0,  1
+7    loada  0,  2
+8    iload  
+9    istore  
+10    loada  0,  0
+11    iload  
+12    loada  0,  1
+13    iload  
+14    call  1
+15    ret  
+16    ret  
+.F3:
+0    snew  1
+1    snew  1
+2    loada  0,  0
+3    iscan  
+4    istore  
+5    loada  0,  1
+6    iscan  
+7    istore  
+8    loada  0,  0
+9    iload  
+10    loada  0,  1
+11    iload  
+12    call  1
+13    call  0
+14    loada  0,  0
+15    iload  
+16    loada  0,  1
+17    iload  
+18    call  2
+19    loada  0,  0
+20    iload  
+21    loada  0,  1
+22    iload  
+23    call  1
+24    call  0
+25    ipush  0
+26    iret  
+27    iret  

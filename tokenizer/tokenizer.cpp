@@ -409,7 +409,9 @@ namespace miniplc0 {
                 char c = current_char.value();
                 if (c == '/') {
                     char end = nextChar().value();
-                    while (end != '\n') {
+                    while (true) {
+                        if (end == 0x0a || end == 0x0d)
+                            break;
                         end = nextChar().value();
                     }
                     current_state = DFAState::INITIAL_STATE;
